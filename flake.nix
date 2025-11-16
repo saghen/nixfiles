@@ -3,40 +3,35 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware";
-    nvidia-patch = {
-      url = "github:icewind1991/nvidia-patch-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
-    firefox-nightly = {
-      url = "github:K900/flake-firefox-nightly/vendor-package-expression";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nvidia-patch.url = "github:icewind1991/nvidia-patch-nixos";
+    nvidia-patch.inputs.nixpkgs.follows = "nixpkgs";
+
+    firefox-nightly.url = "github:K900/flake-firefox-nightly/vendor-package-expression";
+    firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    limbo = {
-      url = "github:saghen/limbo";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    limbo.url = "github:saghen/limbo";
+    limbo.inputs.nixpkgs.follows = "nixpkgs";
+
     wayfreeze.url = "github:jappie3/wayfreeze";
+    wayfreeze.inputs.nixpkgs.follows = "nixpkgs";
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # rust toolchain
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
