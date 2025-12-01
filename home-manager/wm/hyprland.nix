@@ -170,7 +170,7 @@ in
         # Reduces latency by showing frames as they come in, and eliminates tearing
         vrr = 0;
       };
-      render.direct_scanout = 1;
+      render.direct_scanout = 0;
       # debug = { disable_logs = false; };
 
       ## Animations
