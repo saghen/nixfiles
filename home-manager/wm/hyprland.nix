@@ -112,7 +112,7 @@ in
         "QT_SCALE_FACTOR,${toString config.machine.scalingFactor}" # todo: does this do anything?
 
         # enable wayland in all apps
-        # "NIXOS_OZONE_WL,1"
+        "NIXOS_OZONE_WL,1"
       ]
       ++ lib.optionals (config.machine.nvidia) [
         "LIBVA_DRIVER_NAME,nvidia"
@@ -179,6 +179,8 @@ in
       ## Binds
       bind =
         let
+          a2u = "${pkgs.app2unit}/bin/app2unit -s a";
+
           wayfreeze = "${
             inputs.wayfreeze.packages.${pkgs.stdenv.hostPlatform.system}.wayfreeze
           }/bin/wayfreeze";
@@ -234,15 +236,13 @@ in
         in
         [
           # applications
-          # TODO: wgpu selects non existent igpu by default
-          # https://github.com/iced-rs/iced/issues/2810
-          "$mod, Space, exec, fish -c 'vicinae toggle'"
-          "$mod, Return, exec, footclient"
+          "$mod, Space, exec, ${a2u} fish -c 'vicinae toggle'"
+          "$mod, Return, exec, ${a2u} footclient"
           # NOTE: specifying the window size avoids a flash of smaller window
           # NOTE: specifying the foreground color sets the cursor color when the background/foreground are the same
-          "$mod, c, exec, ${launchNeovimZellij}/bin/launch-neovim-zellij"
-          "$mod + SHIFT, c, exec, footclient -o colors.foreground=${subtext} -o pad=0x0 --window-size-pixels=2560x1440 --app-id neovim --title neovim nvim"
-          "$mod + SHIFT, Return, exec, foot" # fallback in case foot.service fails
+          "$mod, c, exec, ${a2u} ${launchNeovimZellij}/bin/launch-neovim-zellij"
+          "$mod + SHIFT, c, exec, ${a2u} footclient -o colors.foreground=${subtext} -o pad=0x0 --window-size-pixels=2560x1440 --app-id neovim --title neovim nvim"
+          "$mod + SHIFT, Return, exec, ${a2u} foot" # fallback in case foot.service fails
 
           # screenshots
           ", Print, exec, ${screenshotRegion}"
@@ -265,11 +265,6 @@ in
           "$mod + SHIFT, f, fullscreen"
           "$mod, s, swapactiveworkspaces, ${lib.concatStringsSep " " monitors}"
           "$mod, d, centerwindow"
-
-          # bar
-          "$mod, b, exec, systemctl --user restart limbo"
-          "$mod + SHIFT, b, exec, systemctl --user stop limbo"
-          "$mod + ALT, b, exec, systemctl --user start limbo"
 
           # special
           ## swayosd  TODO: never tested
@@ -330,11 +325,8 @@ in
         "float,title:(.*)"
 
         # Firefox
-        "tile,class:(firefox-nightly)"
-        "float,class:(firefox-nightly),title:(Enter name of file to save to...)"
-        "float,class:(firefox-nightly),title:(File Upload)"
-        "size 1200 800,class(firefox-nightly),title:(Enter name of file to save to...)"
-        "size 1200 800,class(firefox-nightly),title:(File Upload)"
+        "tile,class:(firefox-nightly),modal:0"
+        "size 1200 800,class:(firefox-nightly),modal:1"
 
         # Games: fullscreen, workspace 3, always focused for workspace, ignore activate
         "fullscreen,class:(steam_app_.+|tf_linux64|gamescope)"

@@ -1,11 +1,15 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services.libinput.touchpad.naturalScrolling = true;
 
   # window manager
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    withUWSM = true;
+  };
+  services.displayManager.defaultSession = "hyprland-uwsm";
   security.pam.services.hyprlock = { }; # required to allow hyprlock to unlock
-  services.displayManager.defaultSession = "hyprland";
 
   # login screen with auto login
   services.displayManager = {
@@ -15,7 +19,7 @@
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = false; # breaks it
+    xdgOpenUsePortal = true;
   };
 
   # required by various gtk apps, such as nautilus for detecting removable drives
