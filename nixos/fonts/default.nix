@@ -5,7 +5,7 @@
     # fontDir.enable = true;
     packages = with pkgs; [
       nerd-fonts.fira-code
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       cantarell-fonts
 
       (callPackage ./feather { })

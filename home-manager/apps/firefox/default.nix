@@ -13,7 +13,7 @@
 
   programs.firefox = {
     enable = true;
-    package = firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin;
+    package = firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
 
     profiles = {
       saghen = {

@@ -179,7 +179,9 @@ in
       ## Binds
       bind =
         let
-          wayfreeze = "${inputs.wayfreeze.packages.${pkgs.system}.wayfreeze}/bin/wayfreeze";
+          wayfreeze = "${
+            inputs.wayfreeze.packages.${pkgs.stdenv.hostPlatform.system}.wayfreeze
+          }/bin/wayfreeze";
           wayshot = "${pkgs.wayshot}/bin/wayshot";
           slurp = "${pkgs.slurp}/bin/slurp";
           pkill = "${pkgs.procps}/bin/pkill";

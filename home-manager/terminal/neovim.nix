@@ -19,7 +19,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     extraLuaConfig = ''
       -- required for smart-open.nvim
@@ -140,7 +140,7 @@
       # misc
       bash-language-server
       dockerfile-language-server
-      postgres-lsp
+      postgres-language-server
       harper # grammar/spelling
       # nix
       nil

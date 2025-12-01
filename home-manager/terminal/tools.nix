@@ -115,6 +115,7 @@
   programs = {
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "github.com" = {
           hostname = "github.com";
@@ -126,12 +127,6 @@
           hostname = "hf.co";
           user = "git";
           identityFile = "~/.ssh/id_github";
-          identitiesOnly = true;
-        };
-        factorio = {
-          hostname = "178.156.133.223";
-          user = "root";
-          identityFile = "/etc/ssh/ssh_host_ed25519_key";
           identitiesOnly = true;
         };
         otoro.forwardAgent = true;
@@ -156,13 +151,16 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userEmail = "liamcdyer@gmail.com";
-      userName = "Liam Dyer";
       signing = {
         signByDefault = true;
         key = "A8F94F230A4470B1";
       };
-      extraConfig = {
+      settings = {
+        user = {
+          email = "liamcdyer@gmail.com";
+          name = "Liam Dyer";
+        };
+
         core = {
           excludesfile = "~/.gitignore_global";
         };
