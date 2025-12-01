@@ -4,13 +4,13 @@
     machine = {
       scalingFactor = 1.25;
       monitors = [
-        "DP-4"
-        "DP-6"
+        "DP-1"
+        "DP-2"
       ];
       width = 3840;
       height = 2160;
       refreshRate = 240;
-      nvidia = true;
+      nvidia = false;
 
       microphoneHack = true;
 
