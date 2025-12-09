@@ -23,6 +23,7 @@
       obsidian # Notes
       pavucontrol # GUI Volume mixer and device settings
       helvum # GUI Audio routing: Control what apps get what audio
+      tauon # Music player
       mpv # Video player
       feh # Image viewer
       qimgv # Image viewer
