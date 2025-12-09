@@ -14,10 +14,7 @@
 
       microphoneHack = true;
 
-      backup = {
-        toSuperFish = true;
-        fromSuperFish = true;
-      };
+      backup.toSuperFish = true;
 
       disks = {
         boot = {

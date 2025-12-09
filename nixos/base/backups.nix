@@ -75,20 +75,4 @@ rec {
       "/home/*/code/superfishial/readarr-dump"
     ];
   };
-
-  # Restic HTTP server for super fish to backup to
-  sops.secrets."restic/super-fish/htpasswd" = {
-    sopsFile = ../../keys/sops/restic.yaml;
-    mode = "0440";
-    owner = "restic";
-    group = "restic";
-  };
-  services.restic.server = {
-    enable = config.machine.backup.fromSuperFish;
-    appendOnly = true;
-    listenAddress = "0.0.0.0:9999";
-    privateRepos = true;
-    # `nsp apacheHttpd` -> `htpasswd -B -c .htpasswd USERNAME`
-    htpasswd-file = config.sops.secrets."restic/super-fish/htpasswd".path;
-  };
 }

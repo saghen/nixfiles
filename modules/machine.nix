@@ -110,11 +110,6 @@ in
             default = false;
             description = "Enable backups to super fish";
           };
-          fromSuperFish = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Enable backups from super fish";
-          };
         };
       };
       description = "Backup configuration";
