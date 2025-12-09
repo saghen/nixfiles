@@ -23,8 +23,8 @@ in
           (pkgs.fetchFromGitHub {
             owner = "LucasOe";
             repo = "spicetify-genres";
-            rev = "38db860f7997edc2ee1c40445938e6c824e92c1c";
-            hash = "sha256-iXyF17RVm0GGrC8rM2Ddlt0xn+1FA1P81oe+OtyMjao=";
+            rev = "b833f2d94ea6c59262f433857083e377b2522b52";
+            hash = "sha256-sGmqgL+UmFw587yfBHWT/UvcOI7+TkXb+IOFZGB+reo=";
           })
           + /dist;
 

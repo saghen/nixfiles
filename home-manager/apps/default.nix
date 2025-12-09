@@ -7,7 +7,6 @@
   imports = [
     ./firefox
     ./thunderbird
-    ./discord.nix
     ./spotify.nix
     ./video.nix
   ];
@@ -17,7 +16,6 @@
       impala # WIFI TUI
       nautilus # File management
       vesktop # Discord with screen share and audio
-      signal-desktop # E2EE messaging
       gnome-system-monitor # System resource monitor
       gparted # Disk management
       obsidian # Notes
@@ -28,8 +26,6 @@
       feh # Image viewer
       qimgv # Image viewer
       nomacs # Image viewer
-      lutris # Game manager
-      winetricks # Required by lutris
       obs-studio # Record
     ];
 

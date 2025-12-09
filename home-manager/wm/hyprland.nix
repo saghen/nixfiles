@@ -18,7 +18,8 @@ in
   home.packages = with pkgs; [ wl-clipboard ];
 
   # launcher
-  services.vicinae.enable = true;
+  programs.vicinae.enable = true;
+  programs.vicinae.systemd.enable = true;
 
   # wallpaper
   services.hyprpaper = {

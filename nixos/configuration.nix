@@ -14,10 +14,7 @@
 
   system.stateVersion = "24.05";
 
-  # Set your time zone.
   time.timeZone = "America/Toronto";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
   # Defaults to powersave without this

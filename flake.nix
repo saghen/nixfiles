@@ -37,11 +37,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -50,7 +45,6 @@
       home-manager,
       sops-nix,
       hardware,
-      vicinae,
       ...
     }:
     let
@@ -79,7 +73,6 @@
                 };
                 sharedModules = [
                   sops-nix.homeManagerModules.sops
-                  vicinae.homeManagerModules.default
                   ./machines/${hostname}/machine.nix
                 ];
                 users.saghen = import ./home-manager/home.nix;
