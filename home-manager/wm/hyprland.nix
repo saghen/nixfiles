@@ -72,7 +72,15 @@ in
           rev = "88c1ff97cf2b33add3ddea62991700f6bf6b5893";
           hash = "sha256-pLSfS4x6SMVykUqTLYE8feEQqP1yOtKDVeAvzFJoc+I=";
         };
+
         inherit (hyprland) nativeBuildInputs;
+
+        meta = with lib; {
+          homepage = "https://github.com/jmanc3/hyprselect";
+          description = "A plugin that adds a completely useless desktop selection box to Hyprland";
+          license = licenses.unlicense;
+          platforms = platforms.linux;
+        };
       })
     ];
 
