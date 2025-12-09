@@ -61,6 +61,21 @@ in
   # window manager
   wayland.windowManager.hyprland = {
     enable = true;
+
+    plugins = with pkgs; [
+      (hyprlandPlugins.mkHyprlandPlugin {
+        pluginName = "hyprselect";
+        version = "0.1";
+        src = fetchFromGitHub {
+          owner = "jmanc3";
+          repo = "hyprselect";
+          rev = "88c1ff97cf2b33add3ddea62991700f6bf6b5893";
+          hash = "sha256-pLSfS4x6SMVykUqTLYE8feEQqP1yOtKDVeAvzFJoc+I=";
+        };
+        inherit (hyprland) nativeBuildInputs;
+      })
+    ];
+
     settings = {
       "$mod" = "SUPER";
 
