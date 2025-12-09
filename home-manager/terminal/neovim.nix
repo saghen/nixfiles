@@ -119,20 +119,7 @@
       helm-ls
       yaml-language-server
       # lua
-      (pkgs.rustPlatform.buildRustPackage (finalAttrs: {
-        pname = "emmylua_ls";
-        version = "0.13.0";
-
-        buildAndTestSubdir = "crates/emmylua_ls";
-        cargoHash = "sha256-SbsYlIVWDpBU2bxJqXUtOiMHkOoa8Up27X7rVKLLLm0=";
-
-        src = fetchFromGitHub {
-          owner = "EmmyLuaLs";
-          repo = "emmylua-analyzer-rust";
-          tag = finalAttrs.version;
-          hash = "sha256-93PlsVvlUravsnW7YBCii04jCEJPP+6U2vYbVBjcX8M=";
-        };
-      }))
+      emmylua-ls
       lua-language-server
       stylua
       # go
@@ -140,14 +127,13 @@
       # misc
       bash-language-server
       dockerfile-language-server
-      postgres-language-server
       harper # grammar/spelling
       # nix
       nil
       nixfmt
       # python
       ruff
-      basedpyright
+      ty
       # rust
       # NOTE: rust-analyzer is managed by fenix
       graphviz # for crate graph visualization
@@ -157,7 +143,6 @@
       tflint
       # web
       prettierd
-      vscode-langservers-extracted # eslint, css, html, markdown, json
       biome
       typescript
       vtsls
