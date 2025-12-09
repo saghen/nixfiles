@@ -14,7 +14,7 @@
           camera = true;
         };
         settings = {
-          "layout.frame_rate" = 144;
+          "layout.frame_rate" = config.machine.refreshRate;
 
           "privacy.annotate_channels.strict_list.enabled" = true;
           "privacy.donottrackheader.enabled" = true;

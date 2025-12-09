@@ -56,7 +56,6 @@
 
           "layout.frame_rate" = config.machine.refreshRate;
           "gfx.webrender.all" = true;
-          "gfx.vsync.force-disable-waitforvblank" = true;
 
           "privacy.annotate_channels.strict_list.enabled" = true;
           "privacy.donottrackheader.enabled" = true;

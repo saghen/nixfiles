@@ -26,7 +26,7 @@
           "browser.bookmarks.restore_default_bookmarks" = false;
           "browser.contentblocking.category" = "strict";
 
-          "layout.frame_rate" = 144;
+          "layout.frame_rate" = config.machine.refreshRate;
 
           # fractional scaling
           "layout.css.devPixelsPerPx" = config.machine.scalingFactor;
