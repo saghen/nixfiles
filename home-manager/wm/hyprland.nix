@@ -152,6 +152,10 @@ in
         "col.inactive_border" = convertHL colors.base;
         "col.active_border" = convertHL colors.primary;
       };
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
       decoration.blur.enabled = false;
       cursor = {
         no_hardware_cursors = true;
