@@ -27,6 +27,7 @@
       qimgv # Image viewer
       nomacs # Image viewer
       obs-studio # Record
+      prismlauncher # Minecraft launcher
     ];
 
     # google drive lite

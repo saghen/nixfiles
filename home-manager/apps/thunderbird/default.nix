@@ -45,7 +45,6 @@
 
           "services.sync.prefs.sync-seen.browser.newtabpage.pinned" = true;
           "dom.forms.autocomplete.formautofill" = true;
-          "media.ffmpeg.vaapi.enabled" = true;
           "network.dns.disablePrefetch" = false;
           "network.predictor.enabled" = true;
           "network.prefetch-next" = true;

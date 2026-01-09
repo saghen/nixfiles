@@ -72,7 +72,6 @@
           "dom.private-attribution.submission.enabled" = false;
 
           "services.sync.prefs.sync-seen.browser.newtabpage.pinned" = true;
-          "media.ffmpeg.vaapi.enabled" = true;
           "network.dns.disablePrefetch" = false;
           "network.predictor.enabled" = true;
           "network.prefetch-next" = true;

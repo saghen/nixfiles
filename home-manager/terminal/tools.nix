@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     # tools
+    lacy # better cd
     nh # nix helper
     procps # pkill watch top sysctl etc...
     tldr # cheatsheets

@@ -1,7 +1,6 @@
 { config, ... }:
 {
   imports = [
-    ./android.nix
     ./backups.nix
     ./boot.nix
     ./gaming.nix

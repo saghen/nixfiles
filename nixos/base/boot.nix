@@ -1,11 +1,15 @@
 { pkgs, ... }:
 {
+  # enable linux-firmware
+  hardware.enableRedistributableFirmware = true;
+
   boot = {
     # 1000hz keyboard polling rate
     # who knows if that actually does anything
     kernelParams = [
       "quiet"
       "usbhid.kbpoll=1"
+      "split_lock_detect=off" # slight gaming speed-up potentially (unmeasured)
     ];
     kernelPackages = pkgs.linuxPackages_latest;
 
