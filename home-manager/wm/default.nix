@@ -9,6 +9,7 @@
     ./limbo.nix
     ./misc.nix
     ./services/dunst.nix
+    ./services/hyprpaper.nix
     ./theme.nix
     ./xdg.nix
   ];

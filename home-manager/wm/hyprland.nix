@@ -13,6 +13,7 @@ let
   gameWorkspace = toString (if builtins.length monitors > 1 then 3 else 5);
   discordWorkspace = toString (if builtins.length monitors > 1 then 7 else 4);
   spotifyWorkspace = toString (if builtins.length monitors > 1 then 7 else 5);
+  # blackoutWorkspace = toString (if builtins.length monitors > 1 then 8 else 2);
 in
 {
   home.packages = with pkgs; [ wl-clipboard ];
@@ -20,15 +21,6 @@ in
   # launcher
   programs.vicinae.enable = true;
   programs.vicinae.systemd.enable = true;
-
-  # wallpaper
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = [ "~/pictures/wallpaper.png" ];
-      wallpaper = map (m: "${m},~/pictures/wallpaper.png") monitors;
-    };
-  };
 
   # turn off screens
   services.hypridle = {
@@ -64,25 +56,25 @@ in
     enable = true;
 
     plugins = with pkgs; [
-      (hyprlandPlugins.mkHyprlandPlugin {
-        pluginName = "hyprselect";
-        version = "0.1";
-        src = fetchFromGitHub {
-          owner = "jmanc3";
-          repo = "hyprselect";
-          rev = "88c1ff97cf2b33add3ddea62991700f6bf6b5893";
-          hash = "sha256-pLSfS4x6SMVykUqTLYE8feEQqP1yOtKDVeAvzFJoc+I=";
-        };
-
-        inherit (hyprland) nativeBuildInputs;
-
-        meta = with lib; {
-          homepage = "https://github.com/jmanc3/hyprselect";
-          description = "A plugin that adds a completely useless desktop selection box to Hyprland";
-          license = licenses.unlicense;
-          platforms = platforms.linux;
-        };
-      })
+      # (hyprlandPlugins.mkHyprlandPlugin {
+      #   pluginName = "hyprselect";
+      #   version = "0.1";
+      #   src = fetchFromGitHub {
+      #     owner = "jmanc3";
+      #     repo = "hyprselect";
+      #     rev = "88c1ff97cf2b33add3ddea62991700f6bf6b5893";
+      #     hash = "sha256-pLSfS4x6SMVykUqTLYE8feEQqP1yOtKDVeAvzFJoc+I=";
+      #   };
+      #
+      #   inherit (hyprland) nativeBuildInputs;
+      #
+      #   meta = with lib; {
+      #     homepage = "https://github.com/jmanc3/hyprselect";
+      #     description = "A plugin that adds a completely useless desktop selection box to Hyprland";
+      #     license = licenses.unlicense;
+      #     platforms = platforms.linux;
+      #   };
+      # })
     ];
 
     settings = {
@@ -196,9 +188,9 @@ in
         disable_xdg_env_checks = true;
 
         # Reduces latency by showing frames as they come in, and eliminates tearing
-        vrr = 0;
+        vrr = 3;
       };
-      render.direct_scanout = 0;
+      render.direct_scanout = 2;
       # debug = { disable_logs = false; };
 
       ## Animations
@@ -260,6 +252,36 @@ in
             fi
           '';
 
+          toggleBlackout = pkgs.writeShellScriptBin "toggle-blackout" ''
+            #!/bin/bash
+            MONITOR="DP-2"  # Change to your monitor name
+            PIDFILE="/tmp/blackout_monitor.pid"
+
+            if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+                kill "$(cat "$PIDFILE")"
+                rm "$PIDFILE"
+                echo "Blackout disabled"
+            else
+                # Get the current workspace on the target monitor
+                WORKSPACE=$(hyprctl monitors -j | jq -r ".[] | select(.name==\"$MONITOR\") | .activeWorkspace.id")
+                
+                # Set a one-time window rule for the next mpv window
+                hyprctl keyword windowrule "tag +blackout, match:class ^(mpv)$, match:title ^(lavfi.+)"
+                hyprctl keyword windowrule "tag blackout, workspace $WORKSPACE silent"
+                hyprctl keyword windowrule "tag blackout, fullscreen on"
+                hyprctl keyword windowrule "tag blackout, no_anim on"
+                hyprctl keyword windowrule "tag blackout, no_focus on"
+                
+                # Start mpv
+                mpv --loop=inf --no-input-default-bindings \
+                    --really-quiet --no-osc --no-osd-bar \
+                    av://lavfi:color=c=black &
+                echo $! > "$PIDFILE"
+                
+                echo "Blackout enabled on $MONITOR (workspace $WORKSPACE)"
+            fi
+          '';
+
           swayosdClient = "${pkgs.swayosd}/bin/swayosd-client";
         in
         [
@@ -293,6 +315,7 @@ in
           "$mod + SHIFT, f, fullscreen"
           "$mod, s, swapactiveworkspaces, ${lib.concatStringsSep " " monitors}"
           "$mod, d, centerwindow"
+          "$mod, t, exec, ${toggleBlackout}/bin/toggle-blackout"
 
           # special
           ## swayosd  TODO: never tested
@@ -343,60 +366,59 @@ in
       ];
 
       ## Rules
-      windowrulev2 = [
+      windowrule = [
         # Hide border on single window in workspace
-        "bordersize 0, floating:0, onworkspace:w[tv1]"
-        "bordersize 0, floating:0, onworkspace:f[1]"
+        "match:workspace w[tv1]s[false], match:float 0, border_size 0"
+        "match:workspace f[1]s[false], match:float 0, border_size 0"
 
         # Default all floating
-        "float,class:(.*)"
-        "float,title:(.*)"
+        "match:class .*, float on"
+        "match:title .*, float on"
 
         # Firefox
-        "tile,class:(firefox-nightly),modal:0"
-        "size 1200 800,class:(firefox-nightly),modal:1"
+        "match:class firefox-nightly, tile on"
 
         # Games: fullscreen, workspace 3, always focused for workspace, ignore activate
-        "fullscreen,class:(steam_app_.+|tf_linux64|gamescope)"
-        "workspace ${gameWorkspace},class:(steam_app_.+|tf_linux64|gamescope)"
-        "renderunfocused,class:(steam_app_.+|tf_linux64|gamescope)"
-        # Shouldn't be needed with VRR
-        "immediate,class:(steam_app_.+|tf_linux64|gamescope)"
+        "tag +game, match:class (steam_app_.+|tf_linux64|gamescope)"
+        "tag game, fullscreen on"
+        "tag game, workspace ${gameWorkspace}"
+        "tag game, render_unfocused on"
+        # VRR flickers so this is the next best thing
+        "tag game, immediate on"
+        "tag game, content game"
         # TODO: Can't click out of the game window onto the other monitor
         # "stayfocused,class:(steam_app_.+|tf_linux64|gamescope)"
 
         # Tiled
-        "tile,class:(Spotify),title:(Spotify)" # must be specific, otherwise popups will tile
-        "workspace ${spotifyWorkspace},class:(Spotify),title:(Spotify)"
-        "tile,class:(vesktop)"
-        "workspace ${discordWorkspace},class:(vesktop)"
-        "tile,class:(neovim)"
-        "tile,class:(zellij-neovim)"
-        "tile,class:(thunderbird),title:(Mozilla Thunderbird)" # must be specific, otherwise popups will tile
+        "match:class spotify, tile on, workspace ${spotifyWorkspace}"
+        "match:class vesktop, tile on, workspace ${discordWorkspace}"
+        "match:class neovim, tile on"
+        "match:class zellij-neovim, tile on"
+        "match:class thunderbird, match:title Mozilla Thunderbird, tile on" # must be specific, otherwise popups will tile
 
         # Sizing
-        "size 900 1000,class:(org.gnome.SystemMonitor)"
-        "size 1200 800,class:(org.gnome.Nautilus)"
-        "size 1800 1200,class:(steam),title:^(Steam)$"
-        "minsize 640 480,class:(qimgv)"
+        "match:class org.gnome.SystemMonitor, size 900 1000"
+        "match:class org.gnome.Nautilus, size 1200 800"
+        "match:class steam, match:title Steam, size 1800 1200"
+        "match:class qimgv, min_size 640 480"
 
         # Floating
-        "float,class:(utility)"
-        "float,class:(notification)"
-        "float,class:(toolbar)"
-        "float,class:(splash)"
-        "float,class:(dialog)"
-        "float,class:(file_progress)"
-        "float,class:(confirm)"
-        "float,class:(dialog)"
-        "float,class:(download)"
-        "float,class:(error)"
-        "float,class:(notification)"
-        "float,class:(splash)"
-        "float,class:(toolbar)"
+        "match:class utility, float on"
+        "match:class notification, float on"
+        "match:class toolbar, float on"
+        "match:class splash, float on"
+        "match:class dialog, float on"
+        "match:class file_progress, float on"
+        "match:class confirm, float on"
+        "match:class dialog, float on"
+        "match:class download, float on"
+        "match:class error, float on"
+        "match:class notification, float on"
+        "match:class splash, float on"
+        "match:class toolbar, float on"
 
         # Disable animations
-        "noanim 1,class:(foot(client)?)"
+        "match:class foot(client)?, no_anim 1"
       ];
 
       ## Autostart

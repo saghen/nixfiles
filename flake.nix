@@ -24,7 +24,7 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    limbo.url = "github:saghen/limbo";
+    limbo.url = "github:co-conspirators/limbo-rs";
     limbo.inputs.nixpkgs.follows = "nixpkgs";
 
     wayfreeze.url = "github:jappie3/wayfreeze";

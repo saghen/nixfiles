@@ -1,11 +1,16 @@
-{ config, ... }:
+{ ... }:
 
 {
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "~/pictures/wallpaper.png" ];
-      wallpaper = map (m: "${m},~/pictures/wallpaper.png") config.machines.monitors;
+      wallpaper = [
+        {
+          monitor = "";
+          path = "~/pictures/wallpaper.png";
+          fit_mode = "cover";
+        }
+      ];
     };
   };
 }
