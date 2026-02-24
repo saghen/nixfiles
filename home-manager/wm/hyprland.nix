@@ -56,25 +56,25 @@ in
     enable = true;
 
     plugins = with pkgs; [
-      # (hyprlandPlugins.mkHyprlandPlugin {
-      #   pluginName = "hyprselect";
-      #   version = "0.1";
-      #   src = fetchFromGitHub {
-      #     owner = "jmanc3";
-      #     repo = "hyprselect";
-      #     rev = "88c1ff97cf2b33add3ddea62991700f6bf6b5893";
-      #     hash = "sha256-pLSfS4x6SMVykUqTLYE8feEQqP1yOtKDVeAvzFJoc+I=";
-      #   };
-      #
-      #   inherit (hyprland) nativeBuildInputs;
-      #
-      #   meta = with lib; {
-      #     homepage = "https://github.com/jmanc3/hyprselect";
-      #     description = "A plugin that adds a completely useless desktop selection box to Hyprland";
-      #     license = licenses.unlicense;
-      #     platforms = platforms.linux;
-      #   };
-      # })
+      (hyprlandPlugins.mkHyprlandPlugin {
+        pluginName = "hyprselect";
+        version = "0.1";
+        src = fetchFromGitHub {
+          owner = "jmanc3";
+          repo = "hyprselect";
+          rev = "4cb15ee41cc788af73c1a6358bc9c0da28be06d8";
+          hash = "sha256-s2pbPTdPOAbC6nffxx1yPp3KvBIUhJ7t8tERY2/ti3Q=";
+        };
+
+        inherit (hyprland) nativeBuildInputs;
+
+        meta = with lib; {
+          homepage = "https://github.com/jmanc3/hyprselect";
+          description = "A plugin that adds a completely useless desktop selection box to Hyprland";
+          license = licenses.unlicense;
+          platforms = platforms.linux;
+        };
+      })
     ];
 
     settings = {
