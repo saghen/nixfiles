@@ -8,7 +8,7 @@
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
     withUWSM = true;
   };
-  services.displayManager.defaultSession = "hyprland-uwsm";
+  services.displayManager.defaultSession = "hyprland";
   security.pam.services.hyprlock = { }; # required to allow hyprlock to unlock
 
   # login screen with auto login
