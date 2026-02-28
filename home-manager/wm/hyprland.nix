@@ -267,10 +267,10 @@ in
                 
                 # Set a one-time window rule for the next mpv window
                 hyprctl keyword windowrule "tag +blackout, match:class ^(mpv)$, match:title ^(lavfi.+)"
-                hyprctl keyword windowrule "tag blackout, workspace $WORKSPACE silent"
-                hyprctl keyword windowrule "tag blackout, fullscreen on"
-                hyprctl keyword windowrule "tag blackout, no_anim on"
-                hyprctl keyword windowrule "tag blackout, no_focus on"
+                hyprctl keyword windowrule "match:tag blackout, workspace $WORKSPACE silent"
+                hyprctl keyword windowrule "match:tag blackout, fullscreen on"
+                hyprctl keyword windowrule "match:tag blackout, no_anim on"
+                hyprctl keyword windowrule "match:tag blackout, no_focus on"
                 
                 # Start mpv
                 mpv --loop=inf --no-input-default-bindings \
