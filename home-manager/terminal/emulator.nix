@@ -27,7 +27,7 @@
         cursor = {
           unfocused-style = "hollow";
         };
-        colors = {
+        colors-dark = {
           background = convert colors.base;
           foreground = convert colors.text;
 
