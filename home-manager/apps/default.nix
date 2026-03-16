@@ -28,6 +28,7 @@
       nomacs # Image viewer
       obs-studio # Record
       prismlauncher # Minecraft launcher
+      jellyfin-media-player # Media player
     ];
 
     # google drive lite
