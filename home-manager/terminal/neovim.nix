@@ -21,7 +21,7 @@
     defaultEditor = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-    extraLuaConfig = ''
+    initLua = ''
       -- required for smart-open.nvim
       vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/libsqlite3.so"
       vim.g.cpptools_debugger_path = "${pkgs.vscode-extensions.ms-vscode.cpptools}/extension/debugAdapters/bin/OpenDebugAD7"

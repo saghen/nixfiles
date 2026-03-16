@@ -8,7 +8,7 @@
   networking.wireless.iwd.enable = true;
   services.resolved = {
     enable = true;
-    dnsovertls = "true";
+    settings.Resolve.DNSOverTLS = "true";
   };
   networking.nameservers = [
     "1.1.1.1"
