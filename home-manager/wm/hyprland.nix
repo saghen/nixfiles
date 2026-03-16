@@ -86,12 +86,13 @@ in
           width = config.machine.width;
           height = config.machine.height;
           refreshRate = config.machine.refreshRate;
+          hdrFlags = lib.optionalString config.machine.hdr ", cm, hdr, bitdepth, 10, sdrbrightness, 1.3, sdrsaturation, 1.1";
 
           monitorStrings = lib.imap (
             i: monitor:
             "${monitor}, ${toString width}x${toString height}@${toString refreshRate}, ${
               toString ((builtins.length monitors - i) * width)
-            }x0, 1"
+            }x0, 1${hdrFlags}"
           ) monitors;
         in
         monitorStrings ++ [ "Unknown-1, disable" ];

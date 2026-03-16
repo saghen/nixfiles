@@ -10,7 +10,7 @@
       width = 3840;
       height = 2160;
       refreshRate = 240;
-      nvidia = false;
+      hdr = true;
 
       microphoneHack = true;
 

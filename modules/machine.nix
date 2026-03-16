@@ -83,6 +83,11 @@ in
       description = "Refresh rate of the monitors";
     };
 
+    hdr = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+
     optimizePower = lib.mkOption {
       type = lib.types.bool;
       default = false;
