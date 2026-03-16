@@ -152,19 +152,49 @@
     git = {
       enable = true;
       lfs.enable = true;
+      maintenance = {
+        enable = true;
+        repositories =
+          let
+            root = "${config.home.homeDirectory}/code";
+            repos = [
+              "nvim/blink.cmp"
+              "nvim/blink.pairs"
+              "nvim/blink.indent"
+              "nvim/tuque"
+              "personal/frizbee"
+              "personal/limbo"
+            ];
+          in
+          map (path: "${root}/${path}") repos;
+      };
       signing = {
         signByDefault = true;
         key = "A8F94F230A4470B1";
       };
       settings = {
+        init.defaultBranch = "main";
+        pull.rebase = true;
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
+        rebase = {
+          autoSquash = true;
+          autoStash = true;
+          updateRefs = true;
+        };
+        commit.verbose = true;
+        core = {
+          fsmonitor = true;
+          untrackedCache = true;
+        };
+
         user = {
           email = "liamcdyer@gmail.com";
           name = "Liam Dyer";
         };
 
-        core = {
-          excludesfile = "~/.gitignore_global";
-        };
         url = {
           "ssh://git@github.com" = {
             insteadOf = "https://github.com";
@@ -172,12 +202,6 @@
           "ssh://git@hf.co" = {
             insteadOf = "https://huggingface.co";
           };
-        };
-        init = {
-          defaultBranch = "main";
-        };
-        pull = {
-          rebase = true;
         };
       };
     };
