@@ -42,6 +42,7 @@
     settings = {
       general = {
         enableShadows = false;
+        animationDisabled = config.machine.optimizePower;
         dimmerOpacity = 0.0;
         animationSpeed = 1.5;
         enableBlurBehind = false;
@@ -64,8 +65,8 @@
             {
               id = "MediaMini";
               showArtistFirst = false;
-              showVisualizer = true;
-              maxWidth = 300;
+              showVisualizer = !config.machine.optimizePower;
+              maxWidth = 250 * config.machine.scalingFactor;
               showProgressRing = false;
             }
           ];
@@ -73,7 +74,7 @@
             {
               id = "Workspace";
               labelMode = "none";
-              pillSize = 0.55;
+              pillSize = 0.6875 / config.machine.scalingFactor;
               occupiedColor = "primary";
               emptyColor = "primary";
             }
@@ -90,16 +91,31 @@
             }
             { id = "plugin:screen-recorder"; }
             { id = "KeepAwake"; }
-            { id = "Brightness"; }
-            { id = "Volume"; }
-            { id = "Bluetooth"; }
-            { id = "Network"; }
+            {
+              id = "Brightness";
+              displayMode = "alwaysHide";
+            }
+            {
+              id = "Volume";
+              displayMode = "alwaysHide";
+            }
+            {
+              id = "Bluetooth";
+              displayMode = "alwaysHide";
+            }
+            {
+              id = "Network";
+              displayMode = "alwaysHide";
+            }
             { id = "plugin:weather-indicator"; }
             {
               id = "Clock";
               formatHorizontal = "h:mm AP ddd, MMM dd";
             }
-            { id = "Battery"; }
+            {
+              id = "Battery";
+              displayMode = "icon-always";
+            }
           ];
         };
       };
