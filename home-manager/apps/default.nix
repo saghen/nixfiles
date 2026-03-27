@@ -12,24 +12,29 @@
   ];
   config = {
     home.packages = with pkgs; [
-      bluetui # Bluetooth TUI
-      impala # WIFI TUI
       nautilus # File management
       vesktop # Discord with screen share and audio
       gnome-system-monitor # System resource monitor
       gparted # Disk management
-      obsidian # Notes
       pavucontrol # GUI Volume mixer and device settings
-      crosspipe # GUI Audio routing: Control what apps get what audio
       tauon # Music player
       mpv # Video player
       feh # Image viewer
       qimgv # Image viewer
       nomacs # Image viewer
-      obs-studio # Record
       prismlauncher # Minecraft launcher
       jellyfin-media-player # Media player
+      ente-desktop # Photos
     ];
+
+    programs.obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-pipewire-audio-capture
+        obs-vaapi
+        obs-vkcapture
+      ];
+    };
 
     # google drive lite
     services.syncthing.enable = true;

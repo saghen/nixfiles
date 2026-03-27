@@ -7,13 +7,11 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     hardware.url = "github:nixos/nixos-hardware";
 
-    nvidia-patch.url = "github:icewind1991/nvidia-patch-nixos";
-    nvidia-patch.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     firefox-nightly.url = "github:K900/flake-firefox-nightly/vendor-package-expression";
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,14 +22,14 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    limbo.url = "github:co-conspirators/limbo-rs";
-    limbo.inputs.nixpkgs.follows = "nixpkgs";
-
     wayfreeze.url = "github:jappie3/wayfreeze";
     wayfreeze.inputs.nixpkgs.follows = "nixpkgs";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

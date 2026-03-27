@@ -56,6 +56,7 @@
 
           "layout.frame_rate" = config.machine.refreshRate;
           "gfx.webrender.all" = true;
+          # "gfx.wayland.hdr" = config.machine.hdr;
 
           "privacy.annotate_channels.strict_list.enabled" = true;
           "privacy.donottrackheader.enabled" = true;

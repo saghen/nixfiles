@@ -10,6 +10,7 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true; # legacy, try removing in a couple years
       desktop = "${config.home.homeDirectory}/desktop";
       documents = "${config.home.homeDirectory}/documents";
       download = "${config.home.homeDirectory}/downloads";

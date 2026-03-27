@@ -18,10 +18,6 @@ in
 {
   home.packages = with pkgs; [ wl-clipboard ];
 
-  # launcher
-  programs.vicinae.enable = true;
-  programs.vicinae.systemd.enable = true;
-
   # turn off screens
   services.hypridle = {
     enable = true; # TODO: breaks VRR
@@ -101,13 +97,12 @@ in
         "XDG_SESSION_TYPE,wayland"
         "XDG_CURRENT_DESKTOP,hyprland"
         "QT_QPA_PLATFORM,wayland"
+        # enable wayland in all apps
+        "NIXOS_OZONE_WL,1"
 
         # scaling
         "GDK_SCALE,${toString config.machine.scalingFactor}"
-        "QT_SCALE_FACTOR,${toString config.machine.scalingFactor}" # todo: does this do anything?
-
-        # enable wayland in all apps
-        "NIXOS_OZONE_WL,1"
+        "QT_SCALE_FACTOR,${toString config.machine.scalingFactor}"
       ]
       ++ lib.optionals (config.machine.nvidia) [
         "LIBVA_DRIVER_NAME,nvidia"
@@ -167,12 +162,8 @@ in
         disable_xdg_env_checks = true;
 
         # Reduces latency by showing frames as they come in, and eliminates tearing
-        vrr = 3;
+        vrr = 1;
       };
-      render.direct_scanout = 2;
-      # debug = { disable_logs = false; };
-
-      ## Animations
       animation = [ "global,1,1,default," ];
 
       ## Binds
@@ -190,6 +181,8 @@ in
           wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
           satty = "${pkgs.satty}/bin/satty";
           jq = "${pkgs.jq}/bin/jq";
+
+          noctalia-ipc = "noctalia-shell ipc call";
 
           # https://github.com/Jappie3/wayfreeze/issues/14
           screenshotTmpl =
@@ -260,12 +253,10 @@ in
                 echo "Blackout enabled on $MONITOR (workspace $WORKSPACE)"
             fi
           '';
-
-          swayosdClient = "${pkgs.swayosd}/bin/swayosd-client";
         in
         [
           # applications
-          "$mod, Space, exec, ${a2u} fish -c 'vicinae toggle'"
+          "$mod, Space, exec, ${noctalia-ipc} launcher toggle"
           "$mod, Return, exec, ${a2u} footclient"
           # NOTE: specifying the window size avoids a flash of smaller window
           # NOTE: specifying the foreground color sets the cursor color when the background/foreground are the same
@@ -296,15 +287,15 @@ in
           "$mod, d, centerwindow"
           "$mod, t, exec, ${toggleBlackout}/bin/toggle-blackout"
 
-          # special
-          ## swayosd  TODO: never tested
-          ", XF86AudioRaiseVolume, exec, ${swayosdClient} --output-volume raise"
-          ", XF86AudioLowerVolume, exec, ${swayosdClient} --output-volume lower"
-          ", XF86AudioMute, exec, ${swayosdClient} --output-volume mute-toggle"
-          ", XF86AudioMicMute, exec, ${swayosdClient} --input-volume mute-toggle"
-          ", XF86MonBrightnessUp, exec, ${swayosdClient} --brightness raise"
-          ", XF86MonBrightnessDown, exec, ${swayosdClient} --brightness lower"
-          ## media
+          # osd
+          ", XF86AudioRaiseVolume, exec, ${noctalia-ipc} volume increase"
+          ", XF86AudioLowerVolume, exec, ${noctalia-ipc} volume decrease"
+          ", XF86AudioMute, exec, ${noctalia-ipc} volume muteOutput"
+          ", XF86AudioMicMute, exec, ${noctalia-ipc} microphone muteInput"
+          ", XF86MonBrightnessUp, exec, ${noctalia-ipc} brightness increase"
+          ", XF86MonBrightnessDown, exec, ${noctalia-ipc} brightness decrease"
+
+          # media
           ", XF86AudioPlay, exec, playerctl --player=spotify play-pause"
           ", XF86AudioNext, exec, playerctl --player=spotify next"
           ", XF86AudioPrev, exec, playerctl --player=spotify previous"
@@ -408,6 +399,8 @@ in
         # TODO: https://github.com/Vencord/Vesktop/issues/342
         # needed for working drag and drop
         "[workspace ${discordWorkspace} silent] vesktop"
+        # bar
+        "QT_SCALE_FACTOR=${toString config.machine.scalingFactor} noctalia-shell"
       ]
       ++ lib.optionals config.machine.microphoneHack [
         # constantly set volume to 1 to counteract something adjusting it

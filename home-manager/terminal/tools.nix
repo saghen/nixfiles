@@ -171,6 +171,7 @@
       signing = {
         signByDefault = true;
         key = "A8F94F230A4470B1";
+        format = "openpgp";
       };
       settings = {
         init.defaultBranch = "main";

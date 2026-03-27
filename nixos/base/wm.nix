@@ -13,6 +13,7 @@
 
   # login screen with auto login
   services.displayManager = {
+    sessionPackages = [ pkgs.jay ];
     autoLogin.user = "saghen";
     gdm.enable = true;
   };
@@ -20,6 +21,7 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
+    configPackages = [ pkgs.jay ];
   };
 
   # required by various gtk apps, such as nautilus for detecting removable drives

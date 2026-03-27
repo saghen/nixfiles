@@ -5,7 +5,7 @@
 
   # Internet
   networking.useNetworkd = true;
-  networking.wireless.iwd.enable = true;
+  networking.networkmanager.enable = true;
   services.resolved = {
     enable = true;
     settings.Resolve.DNSOverTLS = "true";

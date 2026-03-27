@@ -6,10 +6,9 @@
 {
   imports = [
     ./hyprland.nix
-    ./limbo.nix
+    ./hyprpaper.nix
     ./misc.nix
-    ./services/dunst.nix
-    ./services/hyprpaper.nix
+    ./noctalia.nix
     ./theme.nix
     ./xdg.nix
   ];
