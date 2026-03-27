@@ -26,6 +26,10 @@
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
+        weather-indicator = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
       };
       version = 2;
     };
@@ -36,6 +40,14 @@
     };
 
     settings = {
+      general = {
+        enableShadows = false;
+        dimmerOpacity = 0.0;
+        animationSpeed = 1.5;
+        enableBlurBehind = false;
+      };
+      colorSchemes.predefinedScheme = "Catpuccin Lavender";
+
       bar = {
         showCapsule = false;
         enableExclusionZoneInset = false;
@@ -82,7 +94,7 @@
             { id = "Volume"; }
             { id = "Bluetooth"; }
             { id = "Network"; }
-            { id = "ControlCenter"; }
+            { id = "plugin:weather-indicator"; }
             {
               id = "Clock";
               formatHorizontal = "h:mm AP ddd, MMM dd";
@@ -91,13 +103,7 @@
           ];
         };
       };
-      general = {
-        enableShadows = false;
-        dimmerOpacity = 0.0;
-        clockFormat = "hh\\nmm";
-        animationSpeed = 1.5;
-        enableBlurBehind = false;
-      };
+
       location = {
         name = "Toronto";
         use12HourFormat = true;
@@ -105,16 +111,6 @@
       ui = {
         tooltipsEnabled = false;
         panelBackgroundOpacity = 1.0;
-      };
-      wallpaper.enabled = false;
-      dock.enabled = false;
-      colorSchemes.predefinedScheme = "Catpuccin Lavender";
-      nightLight.enabled = true;
-      notifications = {
-        # show on non-primary monitor if available
-        monitors = [ (lib.last config.machine.monitors) ];
-        density = "compact";
-        overlayLayer = false;
       };
       appLauncher = {
         enableClipboardHistory = true;
@@ -124,11 +120,32 @@
         enableWindowsSearch = false;
         enableSessionSearch = false;
       };
-    };
-  };
+      audio.preferredPlayer = "spotify";
 
-  sops.secrets.limbo = {
-    sopsFile = ../../keys/sops/limbo.yaml;
-    path = "${config.xdg.configHome}/limbo/secrets.json";
+      nightLight.enabled = true;
+
+      notifications = {
+        enabled = true;
+        # show on non-primary monitor if available
+        monitors = [ (lib.last config.machine.monitors) ];
+        density = "compact";
+        overlayLayer = false;
+      };
+
+      idle = {
+        enabled = true;
+        fadeDuration = 0;
+      };
+
+      wallpaper = {
+        enabled = true;
+        directory = "${config.xdg.userDirs.pictures}/wallpapers/2026";
+        useOriginalImages = true; # reduces cpu usage at the cost of memory
+        automationEnabled = true; # rotate images randomly
+        randomIntervalSec = 60 * 60; # rotate every hour
+      };
+
+      dock.enabled = false;
+    };
   };
 }

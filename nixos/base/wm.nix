@@ -9,11 +9,10 @@
     withUWSM = true;
   };
   services.displayManager.defaultSession = "hyprland";
-  security.pam.services.hyprlock = { }; # required to allow hyprlock to unlock
 
   # login screen with auto login
   services.displayManager = {
-    sessionPackages = [ pkgs.jay ];
+    sessionPackages = [ pkgs.niri ];
     autoLogin.user = "saghen";
     gdm.enable = true;
   };

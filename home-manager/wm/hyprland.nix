@@ -13,39 +13,9 @@ let
   gameWorkspace = toString (if builtins.length monitors > 1 then 3 else 5);
   discordWorkspace = toString (if builtins.length monitors > 1 then 7 else 4);
   spotifyWorkspace = toString (if builtins.length monitors > 1 then 7 else 5);
-  # blackoutWorkspace = toString (if builtins.length monitors > 1 then 8 else 2);
 in
 {
   home.packages = with pkgs; [ wl-clipboard ];
-
-  # turn off screens
-  services.hypridle = {
-    enable = true; # TODO: breaks VRR
-    settings = {
-      general = {
-        # avoid starting multiple hyprlock instances
-        lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || hyprlock";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-      };
-
-      listener = [
-        # turn screen off after 5 minutes
-        {
-          timeout = 300;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-        # lock after 10 minutes
-        {
-          timeout = 600;
-          on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
-        }
-      ];
-    };
-  };
-
-  # night light
-  services.gammarelay.enable = true;
 
   # window manager
   wayland.windowManager.hyprland = {
@@ -394,7 +364,6 @@ in
       ## Autostart
       exec-once = [
         "[workspace 1 silent] firefox-nightly"
-        "${pkgs.swayosd}/bin/swayosd-server"
         "[workspace ${spotifyWorkspace} silent] spotify"
         # TODO: https://github.com/Vencord/Vesktop/issues/342
         # needed for working drag and drop

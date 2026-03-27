@@ -6,7 +6,6 @@
 {
   imports = [
     ./hyprland.nix
-    ./hyprpaper.nix
     ./misc.nix
     ./noctalia.nix
     ./theme.nix
