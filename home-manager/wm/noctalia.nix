@@ -151,6 +151,7 @@
       idle = {
         enabled = true;
         fadeDuration = 0;
+        suspendTimeout = 60 * 60; # hour
       };
 
       wallpaper = {
