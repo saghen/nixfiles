@@ -20,29 +20,6 @@
     capSysNice = false; # doesn't work inside of steam
   };
 
-  programs.gamemode = {
-    enable = true;
-    enableRenice = true;
-    settings = {
-      general = {
-        softrealtime = "on";
-        renice = 10;
-        inhibit_screensaver = 1;
-
-        # Nvidia specific settings
-        # Requires the coolbits extension activated in nvidia-xconfig
-        # This corresponds to the desired GPUPowerMizerMode
-        # "Adaptive"=0 "Prefer Maximum Performance"=1 and "Auto"=2
-        # See NV_CTRL_GPU_POWER_MIZER_MODE and friends in https://github.com/NVIDIA/nvidia-settings/blob/master/src/libXNVCtrl/NVCtrl.h
-        nv_powermizer_mode = 1;
-      };
-      gpu = {
-        apply_gpu_optimizations = "accept-responsibility";
-        gpu_device = 0;
-      };
-    };
-  };
-
   # streaming
   services.sunshine = {
     enable = false;

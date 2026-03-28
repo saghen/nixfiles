@@ -20,7 +20,6 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    configPackages = [ pkgs.jay ];
   };
 
   # required by various gtk apps, such as nautilus for detecting removable drives

@@ -1,8 +1,4 @@
 { ... }:
 {
-  imports = [
-    ./colors.nix
-    ./firefox-nativefy
-    ./gammarelay.nix
-  ];
+  imports = [ ./colors.nix ];
 }

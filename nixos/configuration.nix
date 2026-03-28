@@ -29,7 +29,7 @@
     use-xdg-base-directories = true;
     # Number of parallel downloads
     max-substitution-jobs = 32;
-    # Cardano IOG cache, devenv and community cachix
+    # Devenv and community binary caches
     trusted-substituters = [
       "https://devenv.cachix.org"
       "https://nix-community.cachix.org"
