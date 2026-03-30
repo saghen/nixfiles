@@ -136,7 +136,7 @@
         enableWindowsSearch = false;
         enableSessionSearch = false;
       };
-      audio.preferredPlayer = "spotify";
+      audio.preferredPlayer = "Spotify";
 
       nightLight.enabled = true;
 

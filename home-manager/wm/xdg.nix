@@ -23,8 +23,12 @@
 
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      config.common.default = "*";
+      configPackages = with pkgs; [
+        xdg-desktop-portal-gnome
+      ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+      ];
       xdgOpenUsePortal = true;
     };
 
@@ -38,6 +42,16 @@
         files = "org.gnome.Nautilus.desktop";
         mpv = "mpv.desktop";
         vlc = "vlc.desktop";
+
+        player = [
+          mpv
+          vlc
+        ];
+        imageViewer = [
+          qimgv
+          nomacs
+          feh
+        ];
       in
       {
         enable = true;
@@ -45,126 +59,34 @@
         associations.added = {
           "inode/directory" = [ files ];
 
-          "audio/aac" = [
-            mpv
-            vlc
-          ];
-          "audio/flac" = [
-            mpv
-            vlc
-          ];
-          "audio/mpeg" = [
-            mpv
-            vlc
-          ];
-          "audio/ogg" = [
-            mpv
-            vlc
-          ];
-          "audio/opus" = [
-            mpv
-            vlc
-          ];
-          "audio/wav" = [
-            mpv
-            vlc
-          ];
-          "audio/webm" = [
-            mpv
-            vlc
-          ];
+          "audio/aac" = player;
+          "audio/flac" = player;
+          "audio/mpeg" = player;
+          "audio/ogg" = player;
+          "audio/opus" = player;
+          "audio/wav" = player;
+          "audio/webm" = player;
 
-          "video/x-msvideo" = [
-            mpv
-            vlc
-          ]; # avi
-          "video/mp4" = [
-            mpv
-            vlc
-          ];
-          "video/mpeg" = [
-            mpv
-            vlc
-          ];
-          "video/ogg" = [
-            mpv
-            vlc
-          ];
-          "video/mp2t" = [
-            mpv
-            vlc
-          ];
-          "video/webm" = [
-            mpv
-            vlc
-          ];
-          "video/matroska" = [
-            mpv
-            vlc
-          ];
+          "video/x-msvideo" = player; # avi
+          "video/mp4" = player;
+          "video/mpeg" = player;
+          "video/ogg" = player;
+          "video/mp2t" = player;
+          "video/webm" = player;
+          "video/matroska" = player;
 
-          "image/jpeg" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/heic" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/heif" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/png" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/apng" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/gif" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/webp" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/avif" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/bmp" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/ico" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/tiff" = [
-            qimgv
-            nomacs
-            feh
-          ];
-          "image/svg+xml" = [
-            qimgv
-            nomacs
-            feh
-            nvim
-            firefox
-          ];
+          "image/jpeg" = imageViewer;
+          "image/heic" = imageViewer;
+          "image/heif" = imageViewer;
+          "image/png" = imageViewer;
+          "image/apng" = imageViewer;
+          "image/gif" = imageViewer;
+          "image/webp" = imageViewer;
+          "image/avif" = imageViewer;
+          "image/bmp" = imageViewer;
+          "image/ico" = imageViewer;
+          "image/tiff" = imageViewer;
+          "image/svg+xml" = imageViewer;
 
           "text/html" = [
             firefox

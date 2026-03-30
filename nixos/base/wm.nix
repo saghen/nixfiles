@@ -1,18 +1,37 @@
-{ pkgs, ... }:
 {
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
+  imports = [ inputs.niri.nixosModules.niri ];
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+  niri-flake.cache.enable = false;
+
   services.libinput.touchpad.naturalScrolling = true;
 
-  # window manager
-  programs.hyprland = {
-    enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    withUWSM = true;
+  environment.variables = {
+    XDG_BACKEND = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "niri";
+    QT_QPA_PLATFORM = "wayland";
+    NIXOS_OZONE_WL = "1"; # enable wayland in all apps
+
+    # scaling
+    GDK_SCALE = toString config.machine.scalingFactor;
+    QT_SCALE_FACTOR = toString config.machine.scalingFactor;
   };
-  services.displayManager.defaultSession = "hyprland";
+
+  # window manager
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
+  services.displayManager.defaultSession = "niri";
 
   # login screen with auto login
   services.displayManager = {
-    sessionPackages = [ pkgs.niri ];
     autoLogin.user = "saghen";
     gdm.enable = true;
   };

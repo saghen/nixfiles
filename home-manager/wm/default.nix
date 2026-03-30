@@ -7,6 +7,7 @@
   imports = [
     ./hyprland.nix
     ./misc.nix
+    ./niri.nix
     ./noctalia.nix
     ./theme.nix
     ./xdg.nix

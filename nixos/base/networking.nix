@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -14,6 +14,7 @@
     "1.1.1.1"
     "1.0.0.1"
   ];
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   # VPNs
   services.tailscale = {
