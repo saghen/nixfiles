@@ -19,10 +19,6 @@
           underline-offset = "5px";
           pad = "4x4";
           initial-window-size-pixels = "1750x1050";
-
-          # Caused by Hyprland 0.48+
-          # https://www.reddit.com/r/hyprland/comments/1jjnxh2/foot_terminal_issue_after_048_update/
-          gamma-correct-blending = false;
         };
         cursor = {
           unfocused-style = "hollow";

@@ -13,7 +13,6 @@
     fish = {
       enable = true;
       functions = {
-        f = "thefuck";
         l = "eza";
         # disables greeting
         fish_greeting = "";

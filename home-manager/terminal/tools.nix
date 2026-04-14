@@ -9,11 +9,11 @@
 
   home.packages = with pkgs; [
     # tools
+    wl-clipboard # many programs expect in path
     lacy # better cd
     nh # nix helper
     procps # pkill watch top sysctl etc...
     tldr # cheatsheets
-    # thefuck # ...
     eza # better ls
     fd # better find
     sd # better sed

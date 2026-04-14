@@ -59,10 +59,7 @@ in
     monitors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       description = "List of monitor names";
-      default = [
-        "DP-4"
-        "DP-6"
-      ];
+      default = [ ];
     };
 
     width = lib.mkOption {
@@ -81,6 +78,12 @@ in
       type = lib.types.int;
       default = 60;
       description = "Refresh rate of the monitors";
+    };
+
+    variableRefreshRate = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Variable refresh rate of the monitors";
     };
 
     hdr = lib.mkOption {

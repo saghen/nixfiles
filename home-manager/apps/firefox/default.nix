@@ -38,6 +38,9 @@
 
           "middlemouse.paste" = false;
 
+          # crashes for now
+          "media.hardware-video-decoding.enabled" = false;
+
           # fractional scaling
           "layout.css.devPixelsPerPx" = config.machine.scalingFactor;
 
@@ -55,7 +58,6 @@
           "devtools.toolbox.host" = "right";
 
           "layout.frame_rate" = config.machine.refreshRate;
-          "gfx.webrender.all" = true;
           # "gfx.wayland.hdr" = config.machine.hdr;
 
           "privacy.annotate_channels.strict_list.enabled" = true;

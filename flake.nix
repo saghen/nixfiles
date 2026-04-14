@@ -13,7 +13,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    firefox-nightly.url = "github:K900/flake-firefox-nightly/vendor-package-expression";
+    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
@@ -21,9 +21,6 @@
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
-
-    wayfreeze.url = "github:jappie3/wayfreeze";
-    wayfreeze.inputs.nixpkgs.follows = "nixpkgs";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";

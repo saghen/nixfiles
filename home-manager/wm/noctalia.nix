@@ -66,7 +66,7 @@
               id = "MediaMini";
               showArtistFirst = false;
               showVisualizer = !config.machine.optimizePower;
-              maxWidth = 250 * config.machine.scalingFactor;
+              maxWidth = 350 * config.machine.scalingFactor;
               showProgressRing = false;
             }
           ];
@@ -136,9 +136,8 @@
         enableWindowsSearch = false;
         enableSessionSearch = false;
       };
-      audio.preferredPlayer = "Spotify";
-
-      nightLight.enabled = true;
+      audio.preferredPlayer = "spotify"; # TODO: doesnt work
+      nightLight.enabled = true; # TODO: doesnt work in hdr
 
       notifications = {
         enabled = true;
