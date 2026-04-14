@@ -18,13 +18,53 @@
 
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+    defaultEditor = true;
+    withNodeJs = false;
+    withPython3 = false;
+    withRuby = false;
+
+    extraPackages = with pkgs; [
+      tree-sitter
+
+      # Luarocks
+      lua51Packages.luarocks
+      lua51Packages.lua
+
+      # Voice recording for gp.nvim
+      alsa-utils # for arecord
+      (sox.override { enableLame = true; })
+
+      ## LSPs, formatters, linters | NOTE: rust-analyzer is managed by fenix
+      efm-langserver
+      yaml-language-server
+      gopls
+      # lua
+      emmylua-ls
+      stylua
+      # nix
+      nil
+      nixfmt
+      # python
+      ruff
+      ty
+      # web
+      prettierd
+      vtsls
+    ];
+
+    # for blink-tree
+    extraWrapperArgs = [
+      "--suffix"
+      "LD_LIBRARY_PATH"
+      ":"
+      "${lib.makeLibraryPath [ pkgs.libgit2 ]}"
+    ];
 
     initLua = ''
       -- required for smart-open.nvim
       vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/libsqlite3.so"
-      vim.g.cpptools_debugger_path = "${pkgs.vscode-extensions.ms-vscode.cpptools}/extension/debugAdapters/bin/OpenDebugAD7"
 
       vim.g.colors = {
         crust = "${config.colors.crust}",
@@ -93,59 +133,5 @@
       -- bootstrap lazy.nvim, lazyvim and my plugins
       require('config.lazy')
     '';
-
-    # for blink-tree
-    extraWrapperArgs = [
-      "--suffix"
-      "LD_LIBRARY_PATH"
-      ":"
-      "${lib.makeLibraryPath [ pkgs.libgit2 ]}"
-    ];
-
-    extraPackages = with pkgs; [
-      tree-sitter
-
-      # Luarocks
-      lua51Packages.luarocks
-      lua51Packages.lua
-
-      # Voice recording for gp.nvim
-      alsa-utils # for arecord
-      (sox.override { enableLame = true; })
-
-      ## LSPs, formatters, linters
-      efm-langserver
-      # kubernetes
-      helm-ls
-      yaml-language-server
-      # lua
-      emmylua-ls
-      lua-language-server
-      stylua
-      # go
-      gopls
-      # misc
-      bash-language-server
-      dockerfile-language-server
-      harper # grammar/spelling
-      # nix
-      nil
-      nixfmt
-      # python
-      ruff
-      ty
-      # rust
-      # NOTE: rust-analyzer is managed by fenix
-      graphviz # for crate graph visualization
-      # terraform
-      terraform-ls
-      terraform # required by lsp for formatting
-      tflint
-      # web
-      prettierd
-      biome
-      typescript
-      vtsls
-    ];
   };
 }

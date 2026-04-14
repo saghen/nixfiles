@@ -231,8 +231,13 @@
   margin-top: 40px;
 }
 
+/* Hide firefox sidebar */
+sidebar-main {
+  display: none !important;
+}
+
 /* Hide sideberry header */
-#sidebar-box #sidebar-header {
+sidebar-panel-header {
   display: none !important;
 }
 

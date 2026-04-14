@@ -15,9 +15,7 @@
       homeDirectory = "/home/${config.home.username}";
       stateVersion = "24.05";
       sessionPath = [ "$HOME/.local/bin" ];
-      sessionVariables = {
-        NH_FLAKE = "$HOME/code/personal/nixfiles";
-      };
+      sessionVariables.NH_FLAKE = "$HOME/code/personal/nixfiles";
       language.base = "en_CA.UTF-8";
     };
   };

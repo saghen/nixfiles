@@ -86,12 +86,6 @@
       flavor = "gmail.com";
       realName = "Liam Dyer";
     };
-    liqwid = {
-      thunderbird.enable = true;
-      address = "liam@liqwid.finance";
-      flavor = "gmail.com";
-      realName = "Liam Dyer";
-    };
     superlodon = {
       thunderbird.enable = true;
       address = "superlodon@super.fish";
