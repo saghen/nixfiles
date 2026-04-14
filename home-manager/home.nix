@@ -5,6 +5,7 @@
     ./modules
     ./terminal
     ./wm
+    ./super-fish-monitor.nix
     ../modules/machine.nix
   ];
   config = {
