@@ -28,4 +28,21 @@
       };
     };
   };
+
+  # disable applications changing volume
+  environment.etc."wireplumber/main.lua.d/51-disable-mic-volume.lua".text = ''
+    rule = {
+      matches = {
+        {
+          { "node.name", "matches", "alsa_input.*" },
+        },
+      },
+      apply_properties = {
+        ["node.param.Props"] = "{ softVolumes: false }",
+      },
+    }
+
+    table.insert(alsa_monitor.rules, rule)
+  '';
+
 }

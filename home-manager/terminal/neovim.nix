@@ -50,8 +50,8 @@
       ruff
       ty
       # web
+      typescript-go
       prettierd
-      vtsls
     ];
 
     # for blink-tree

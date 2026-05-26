@@ -58,10 +58,8 @@
                 useGlobalPkgs = true;
                 extraSpecialArgs = {
                   inputs = inputs;
-                  inherit (inputs) alejandra;
                   inherit (inputs) spicetify-nix;
                   inherit (inputs) fenix;
-                  inherit (inputs) limbo;
                   inherit (inputs) firefox-nightly;
                 };
                 sharedModules = [

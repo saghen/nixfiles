@@ -28,6 +28,7 @@
     twitch-cli # login to twitch, used by some scripts
     xdo # send commands to X
     nix-index # provides nix-locate
+    ast-grep # structural code search
 
     claude-code # AI coding
 

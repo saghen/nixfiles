@@ -13,7 +13,7 @@
   config = {
     home.packages = with pkgs; [
       nautilus # File management
-      vesktop # Discord with screen share and audio
+      equibop # Discord with screen share and audio
       gnome-system-monitor # System resource monitor
       gparted # Disk management
       pavucontrol # GUI Volume mixer and device settings

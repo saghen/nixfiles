@@ -99,7 +99,7 @@ in
     spawn-at-startup = [
       { argv = [ "noctalia-shell" ]; }
       { argv = [ "firefox-nightly" ]; }
-      { argv = [ "vesktop" ]; }
+      { argv = [ "equibop" ]; }
       { argv = [ "spotify" ]; }
     ];
 
@@ -137,10 +137,10 @@ in
       "Mod+Down".action.focus-window-down = { };
       "Mod+Up".action.focus-window-up = { };
       "Mod+Right".action.focus-column-right = { };
-      "Mod+H".action.focus-column-or-monitor-left = { };
+      "Mod+H".action.focus-column-left = { };
       "Mod+J".action.focus-window-or-workspace-down = { };
       "Mod+K".action.focus-window-or-workspace-up = { };
-      "Mod+L".action.focus-column-or-monitor-right = { };
+      "Mod+L".action.focus-column-right = { };
 
       "Mod+Shift+Left".action.move-column-left = { };
       "Mod+Shift+Down".action.move-window-down = { };
@@ -312,7 +312,7 @@ in
       }
       {
         matches = [
-          { app-id = "vesktop"; }
+          { app-id = "equibop"; }
           { app-id = "spotify"; }
         ];
         open-on-output = lib.last config.machine.monitors;
