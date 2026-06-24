@@ -30,7 +30,8 @@
     nix-index # provides nix-locate
     ast-grep # structural code search
 
-    claude-code # AI coding
+    claude-code # anthropic
+    codex # openai
 
     # devops
     terraform # FIXME: stores credentials in plain text
@@ -57,6 +58,7 @@
       "rust-src"
       "rustc"
       "rustfmt"
+      "miri"
     ])
     cargo-wizard # subcommand for configuring projects for best performance
     rust-analyzer-nightly
