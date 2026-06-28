@@ -72,6 +72,7 @@ in
     input.keyboard = {
       repeat-rate = 40;
       repeat-delay = 240;
+      xkb.options = "caps:super";
     };
     input.touchpad.natural-scroll = true;
     gestures.hot-corners.enable = false;
