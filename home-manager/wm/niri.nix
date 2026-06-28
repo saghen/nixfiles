@@ -15,9 +15,8 @@ let
   noctalia =
     cmd:
     [
-      "noctalia-shell"
-      "ipc"
-      "call"
+      "noctalia"
+      "msg"
     ]
     ++ (pkgs.lib.splitString " " cmd);
 
@@ -97,7 +96,7 @@ in
     );
 
     spawn-at-startup = [
-      { argv = [ "noctalia-shell" ]; }
+      { argv = [ "noctalia" ]; }
       { argv = [ "firefox-nightly" ]; }
       { argv = [ "equibop" ]; }
       { argv = [ "spotify" ]; }
@@ -108,7 +107,7 @@ in
 
       "Mod+Q".action.focus-monitor-next = { };
       "Mod+W".action.close-window = { };
-      "Mod+D".action.spawn = noctalia "launcher toggle";
+      "Mod+D".action.spawn = noctalia "panel-toggle launcher";
       "Mod+Return".action.spawn = "footclient";
       "Mod+Shift+Return".action.spawn = "foot"; # fallback in case foot.service fails
       "Mod+C".action.spawn = "${lib.getExe launchNeovimZellij}";
@@ -122,12 +121,12 @@ in
       "Mod+Space".action.switch-layout = "next";
       "Mod+Shift+Space".action.switch-layout = "prev";
 
-      "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
-      "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
-      "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
-      "XF86AudioMicMute".action.spawn = noctalia "microphone muteInput";
-      "XF86MonBrightnessUp".action.spawn = noctalia "brightness increase";
-      "XF86MonBrightnessDown".action.spawn = noctalia "brightness decrease";
+      "XF86AudioRaiseVolume".action.spawn = noctalia "volume-up";
+      "XF86AudioLowerVolume".action.spawn = noctalia "volume-down";
+      "XF86AudioMute".action.spawn = noctalia "volume-mute";
+      # "XF86AudioMicMute".action.spawn = noctalia "microphone muteInput";
+      "XF86MonBrightnessUp".action.spawn = noctalia "brightness-up";
+      "XF86MonBrightnessDown".action.spawn = noctalia "brightness-down";
 
       "XF86AudioPlay".action.spawn-sh = "playerctl --player=spotify play-pause";
       "XF86AudioNext".action.spawn-sh = "playerctl --player=spotify next";
@@ -305,7 +304,14 @@ in
       "Mod+Shift+P".action.power-off-monitors = { };
     };
 
+    debug.honor-xdg-activation-with-invalid-serial = true;
     window-rules = [
+      {
+        matches = [ { app-id = "dev.noctalia.Noctalia.Settings"; } ];
+        open-floating = true;
+        # default-column-width.fixed = 1080;
+        # default-column-height.fixed = 920;
+      }
       {
         matches = [ { app-id = "firefox-nightly"; } ];
         open-on-output = builtins.head config.machine.monitors;

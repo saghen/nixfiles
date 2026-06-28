@@ -2,166 +2,116 @@
   config,
   inputs,
   lib,
-  pkgs,
   ...
 }:
 {
   imports = [ inputs.noctalia.homeModules.default ];
 
-  home.packages = with pkgs; [ gpu-screen-recorder ];
-
-  programs.noctalia-shell = {
+  programs.noctalia = {
     enable = true;
-
-    plugins = {
-      sources = [
-        {
-          enabled = true;
-          name = "Official Noctalia Plugins";
-          url = "https://github.com/noctalia-dev/noctalia-plugins";
-        }
-      ];
-      states = {
-        screen-recorder = {
-          enabled = true;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
-        weather-indicator = {
-          enabled = true;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
-      };
-      version = 2;
-    };
-    pluginSettings = {
-      screen-recorder = {
-        directory = config.xdg.userDirs.videos;
-      };
-    };
-
     settings = {
-      general = {
-        enableShadows = false;
-        animationDisabled = config.machine.optimizePower;
-        dimmerOpacity = 0.0;
-        animationSpeed = 1.5;
-        enableBlurBehind = false;
-      };
-      colorSchemes.predefinedScheme = "Catpuccin Lavender";
-
-      bar = {
-        showCapsule = false;
-        enableExclusionZoneInset = false;
-        backgroundOpacity = 1.0;
-        frameRadius = 0;
-        outerCorners = false;
-        widgets = {
-          left = [
-            {
-              id = "Launcher";
-              useDistroLogo = true;
-              enableColorization = true;
-            }
-            {
-              id = "MediaMini";
-              showArtistFirst = false;
-              showVisualizer = !config.machine.optimizePower;
-              maxWidth = 350 * config.machine.scalingFactor;
-              showProgressRing = false;
-            }
-          ];
-          center = [
-            {
-              id = "Workspace";
-              labelMode = "none";
-              pillSize = 0.6875 / config.machine.scalingFactor;
-              occupiedColor = "primary";
-              emptyColor = "primary";
-            }
-          ];
-          right = [
-            {
-              id = "Tray";
-              hidePassive = true;
-              colorizeIcons = true;
-            }
-            {
-              id = "SystemMonitor";
-              showDiskUsage = true;
-            }
-            { id = "plugin:screen-recorder"; }
-            { id = "KeepAwake"; }
-            {
-              id = "Brightness";
-              displayMode = "alwaysHide";
-            }
-            {
-              id = "Volume";
-              displayMode = "alwaysHide";
-            }
-            {
-              id = "Bluetooth";
-              displayMode = "alwaysHide";
-            }
-            {
-              id = "Network";
-              displayMode = "alwaysHide";
-            }
-            { id = "plugin:weather-indicator"; }
-            {
-              id = "Clock";
-              formatHorizontal = "h:mm AP ddd, MMM dd";
-            }
-            {
-              id = "Battery";
-              displayMode = "icon-always";
-            }
-          ];
+      shell = {
+        ui_scale = config.machine.scalingFactor;
+        polkit_agent = true;
+        animation = {
+          enabled = !config.machine.optimizePower;
+          speed = 1.5;
         };
+        mpris.blacklist = [ "firefox-nightly" ];
       };
 
-      location = {
-        name = "Toronto";
-        use12HourFormat = true;
-      };
-      ui = {
-        tooltipsEnabled = false;
-        panelBackgroundOpacity = 1.0;
-      };
-      appLauncher = {
-        enableClipboardHistory = true;
-        terminalCommand = "foot -e";
-        density = "compact";
-        enableSettingsSearch = false;
-        enableWindowsSearch = false;
-        enableSessionSearch = false;
-      };
-      audio.preferredPlayer = "spotify"; # TODO: doesnt work
+      theme.builtin = "Catppuccin";
+      location.address = "Toronto, ON";
       nightLight.enabled = true; # TODO: doesnt work in hdr
+      weather.enabled = true;
+      notifications.monitors = [ (lib.last config.machine.monitors) ]; # non-primary if available
+      nightlight.enabled = true;
 
-      notifications = {
-        enabled = true;
-        # show on non-primary monitor if available
-        monitors = [ (lib.last config.machine.monitors) ];
-        density = "compact";
-        overlayLayer = false;
+      widget.clock.format = "{:%-I:%M %p} {:%a}, {:%b %d}";
+      widget.workspaces = {
+        display = "none";
+        pill_scale = 1 / config.machine.scalingFactor;
+        occupied_color = "primary";
+        empty_color = "primary";
+      };
+      widget.media.max_width = 350 * config.machine.scalingFactor;
+      widget.launcher.glyph = "";
+      widget.tray.drawer = true;
+      widget.battery.display_mode = "graphic";
+      widget.volume.show_label = false;
+      widget.network.show_label = false;
+      widget.weather.show_condition = false;
+
+      widget.cpu = {
+        type = "sysmon";
+        stat = "cpu_usage";
+        show_label = false;
+      };
+      widget.temp = {
+        type = "sysmon";
+        stat = "cpu_temp";
+        show_label = false;
+      };
+      widget.ram = {
+        type = "sysmon";
+        stat = "ram_used";
+        show_label = false;
+      };
+      widget.disk = {
+        type = "sysmon";
+        stat = "disk_pct";
+        path = "/";
+        show_label = false;
+      };
+
+      bar.main = {
+        scale = config.machine.scalingFactor;
+        thickness = 34 * config.machine.scalingFactor;
+        widget_spacing = 12 * config.machine.scalingFactor;
+        radius = 0;
+        margin_ends = 0;
+        margin_edge = 0;
+        shadow = false;
+        outer_corners = false;
+
+        start = [
+          "launcher"
+          "media"
+        ];
+        center = [ "workspaces" ];
+        end = [
+          "tray"
+          "cpu"
+          "temp"
+          "ram"
+          "disk"
+          "brightness"
+          "volume"
+          "bluetooth"
+          "network"
+          "weather"
+          "clock"
+          "battery"
+        ];
       };
 
       idle = {
-        enabled = true;
-        fadeDuration = 0;
-        suspendTimeout = 60 * 60; # hour
+        behavior.lock = {
+          timeout = 60 * 60; # hour
+          command = "noctalia:session lock";
+        };
+        behavior.screen_off = {
+          timeout = 60 * 10; # 10 minutes
+          command = "noctalia:dpms-off";
+          resumeCommand = "noctalia:dpms-on";
+        };
       };
 
       wallpaper = {
-        enabled = true;
         directory = "${config.xdg.userDirs.pictures}/wallpapers/2026";
-        useOriginalImages = true; # reduces cpu usage at the cost of memory
-        automationEnabled = true; # rotate images randomly
-        randomIntervalSec = 60 * 60; # rotate every hour
+        automation.enabled = true;
+        automation.interval_seconds = 60 * 60; # rotate every hour
       };
-
-      dock.enabled = false;
     };
   };
 }
