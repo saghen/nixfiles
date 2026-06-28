@@ -18,26 +18,31 @@
           speed = 1.5;
         };
         mpris.blacklist = [ "firefox-nightly" ];
+        launcher.categories = false;
       };
 
       theme.builtin = "Catppuccin";
       location.address = "Toronto, ON";
-      nightLight.enabled = true; # TODO: doesnt work in hdr
+      nightlight.enabled = true;
       weather.enabled = true;
       notifications.monitors = [ (lib.last config.machine.monitors) ]; # non-primary if available
-      nightlight.enabled = true;
 
       widget.clock.format = "{:%-I:%M %p} {:%a}, {:%b %d}";
       widget.workspaces = {
         display = "none";
-        pill_scale = 1 / config.machine.scalingFactor;
+        pill_scale = 0.8;
         occupied_color = "primary";
         empty_color = "primary";
       };
       widget.media.max_width = 350 * config.machine.scalingFactor;
       widget.launcher.glyph = "";
       widget.tray.drawer = true;
-      widget.battery.display_mode = "graphic";
+      widget.internal_battery = {
+        type = "battery";
+        device = "auto";
+        display_mode = "icon";
+      };
+      widget.brightness.show_label = false;
       widget.volume.show_label = false;
       widget.network.show_label = false;
       widget.weather.show_condition = false;
@@ -85,13 +90,14 @@
           "temp"
           "ram"
           "disk"
+          "power_profile"
           "brightness"
           "volume"
           "bluetooth"
           "network"
           "weather"
           "clock"
-          "battery"
+          "internal_battery"
         ];
       };
 
