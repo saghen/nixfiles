@@ -2,10 +2,7 @@
 {
   # hardware-specific modules
   # TODO: use framework specific module
-  imports = [
-    inputs.hardware.nixosModules.common-pc-laptop
-    inputs.hardware.nixosModules.common-pc-ssd
-  ];
+  imports = [ inputs.hardware.nixosModules.framework-amd-ai-300-series ];
 
   config = {
     networking.hostName = "liam-laptop";
