@@ -226,9 +226,14 @@
   margin-top: 0 !important;
 }
 
+#sidebar {
+  border-radius: 0 !important;
+}
+
 #sidebar-box {
   --sidebar-background-color: var(--sag-bg-500) !important;
   margin-top: 40px;
+  padding: 0 !important;
 }
 
 /* Hide firefox sidebar */
