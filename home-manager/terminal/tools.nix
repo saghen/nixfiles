@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   ...
@@ -29,9 +30,11 @@
     xdo # send commands to X
     nix-index # provides nix-locate
     ast-grep # structural code search
+    tokei # count LoC
 
-    claude-code # anthropic
-    codex # openai
+    # agents
+    llm-agents.claude-code
+    llm-agents.codex
 
     # devops
     terraform # FIXME: stores credentials in plain text

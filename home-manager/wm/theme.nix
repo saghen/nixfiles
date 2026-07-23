@@ -4,6 +4,8 @@ rec {
   home.pointerCursor = {
     name = "catppuccin-mocha-dark-cursors";
     package = pkgs.catppuccin-cursors.mochaDark;
+    gtk.enable = true;
+    x11.enable = true;
   };
 
   # Icon theme (system-wide)

@@ -36,7 +36,7 @@ let
 
   screenshotRegion = pkgs.writeShellScriptBin "screenshot-region" ''
     mkdir -p ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y)
-    ${lib.getExe pkgs.wayshot} --geometry --clipboard ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y)/$(date +%Y-%m-%d_%H-%M-%S).png
+    ${lib.getExe pkgs.wayshot} --geometry-background-color 00000050 --geometry-foreground-color ffffffff --geometry --clipboard ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y)/$(date +%Y-%m-%d_%H-%M-%S).png
   '';
 in
 {
@@ -307,12 +307,6 @@ in
 
     debug.honor-xdg-activation-with-invalid-serial = true;
     window-rules = [
-      {
-        matches = [ { app-id = "dev.noctalia.Noctalia.Settings"; } ];
-        open-floating = true;
-        # default-column-width.fixed = 1080;
-        # default-column-height.fixed = 920;
-      }
       {
         matches = [ { app-id = "firefox-nightly"; } ];
         open-on-output = builtins.head config.machine.monitors;

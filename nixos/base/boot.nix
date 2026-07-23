@@ -35,6 +35,8 @@
         "split_lock_detect=off" # slight gaming speed-up potentially (unmeasured)
       ];
 
+      kernel.sysctl."vm.max_map_count" = 1048576;
+
       loader = {
         efi.canTouchEfiVariables = true;
         timeout = 5;
