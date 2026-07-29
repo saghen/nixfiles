@@ -2,6 +2,7 @@
 rec {
   # Cursor theme (system-wide)
   home.pointerCursor = {
+    enable = true;
     name = "catppuccin-mocha-dark-cursors";
     package = pkgs.catppuccin-cursors.mochaDark;
     gtk.enable = true;

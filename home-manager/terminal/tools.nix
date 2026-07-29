@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 {
   # rust packages
   home.sessionPath = [ "$HOME/.config/cargo/bin" ];
@@ -35,17 +30,15 @@
     # agents
     llm-agents.claude-code
     llm-agents.codex
+    llm-agents.pi
 
     # devops
     terraform # FIXME: stores credentials in plain text
     kubectl
     kustomize
-    krew # package manager for kubectl
     kubectx # fast namespace and context switching
     kubecolor # colorized kubectl output
     kubernetes-helm # k8s package manager
-    talosctl # Talos (k8s OS)
-    omnictl # SaaS for Talos management
 
     # languages
     go
