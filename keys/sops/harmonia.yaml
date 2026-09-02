@@ -1,0 +1,37 @@
+harmonia: ENC[AES256_GCM,data:tZ9otdOSIxxMvYRQs5yEQZaV5jTw+IY+pOpQH4AQQ55kOiuvBdceqP60CPlMBejVzSUzIbmgufAbFgwGjBCywq3jjCzrzbXaXYGMzMbmnndQTACuESETwbOUn7PbSgj1NsXNCnNH9w==,iv:VMy6kIMGISsWN0y3hbVG5W8NA8SZBaggHTkj/SSEMGE=,tag:/rOCjnIPIZfwthEK569v6g==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5SlVKcUFJemFOYzQ5Y0Rx
+            ZnJ6MllWQXFHT1JhdGpseHdhZWcxeHh0elJRCjdCMkhVdEFkTzFrV1YwMktVUXFm
+            TEk5bDZ2RnYwOFZ4a1hYMFhnMENHc1kKLS0tIFRvWnVtU0NtRDZZd0pDT0t0UndV
+            UjFKeHR6bTcxdm5yYVhJS2JndXV6dTQKwFxqN0xozwq1uzvMQtvUff4o8tj0GQLG
+            5fMTi1FBuPY2SNMgkL/SLQoLA0ohQxPkSwC45RK0phGfpN/f7cbvIA==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1qwt2ksr3xyfm59alud9pkmfucekjc7m60w8ye8lw8syxnx6a23hqdfhlhl
+    lastmodified: "2026-09-02T07:34:19Z"
+    mac: ENC[AES256_GCM,data:09NwD4zl15mSWOckEyDzK1XgRs/JRcLrDYs6JLOEdx9vOF3tM2SEs003PPyvr7guQCKFuthc+jLqc5u6YYT5cpqkmubaPeO8+yZrwneGV0SFBfNPbioW+YRVizzL8ZBThMjdcA4kGxHQMHpDZXtsbQhdeq4PoSacXnOgMxJoLo4=,iv:D4wltgXntM/GuzN2Sz2KkXOq9EwSIJHQ2Z3k3bRhVZg=,tag:Iysta9LdocxLk/tnpSaUkw==,type:str]
+    pgp:
+        - created_at: "2026-09-02T07:34:19Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8xcV/v5avFQAQ//Q0/nvF9HaH1TRWd1b1EdvfUAtn0S4lMbE/WoaL9D0rdL
+            gDa0DApbe/WZUSkK/97rg5CdBQuMcV+cp4C5b8ZLoCVCcauK1ytUwmlBFfR4HlQc
+            xBkPtSReevJcJE93ez6nQJWdxQ2RKBcpB38TiQYRwMRX3WOH3DkvSKVsFUxSdzpb
+            0uAubqW4M8x50K0EKiQvlIcAoM6MY/Gzj5LsClDXCs/z6O5vHyMFM5/OrgHxrcGo
+            p4XYwfqLLH4FJLOJPLfsJwHhXEz+Nf66z7fXYY1upKsoPPbDakpKgG8NOiNeygZo
+            66AxMYOiPKGcldSooMWVXtUpbt/gC7VlPyCUUiyG36+lLIMbfjlVqZNnOmnQRRNS
+            tGvkJXmBSdoG/EA9i4C8hvtl/vSZhrIiYzIoWjFVnbloFdhVlGuZDgIa5dhqtelq
+            LengOvWTkymxj6DfMzook4R3kkD8mA1WPVd15N6YmtzAcn/P+DJpSnt+GP8O0MXG
+            KUL71XYHq4geXVB2AF3w68moPB1BfWKS1/dORGMF0ddm9o0lNeGtoifz2GsnKZMx
+            l/oWV9u+j0Mg8480oaTyPJtJLIo/gbMY4Ebkgrh3mjlMNv0iWGdIyCIB8ubNTISn
+            VZlWGnnOdHCNVPBVIpfR/OCBubReBiKKEqn7tHhxpwu0kUCJ7VjYrDPV9RydWyzS
+            XAG5Z12yo/FPKEIJ/SJBBeR01HTadpJsMhUH6VKzOYX7pSEHKhgpqaLdJolE86J+
+            MQn/rSjHuLmBbpYWEJJvOzlIcNI3pjpOc0jexvBQpHaDlz3CD+GN59BFQSk6
+            =VsJf
+            -----END PGP MESSAGE-----
+          fp: 149EB53A65D1B6DE5831E3EE48B4568B9759823E
+    unencrypted_suffix: _unencrypted
+    version: 3.13.2
