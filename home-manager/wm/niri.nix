@@ -36,7 +36,7 @@ let
 
   screenshotRegion = pkgs.writeShellScriptBin "screenshot-region" ''
     mkdir -p ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y)
-    ${lib.getExe pkgs.wayshot} --geometry-background-color 00000050 --geometry-foreground-color ffffffff --geometry --clipboard ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y)/$(date +%Y-%m-%d_%H-%M-%S).png
+    ${lib.getExe pkgs.wayshot} --geometry-background-color 00000050 --geometry-foreground-color ffffffff --clipboard ${config.xdg.userDirs.pictures}/screenshots/$(date +%Y)/$(date +%Y-%m-%d_%H-%M-%S).png --geometry
   '';
 in
 {
@@ -45,6 +45,7 @@ in
     launchNeovimZellij
   ];
 
+  programs.niri.package = pkgs.niri-unstable;
   programs.niri.settings = {
     # must use unstable niri and xwayland-satellite for xwayland support (steam)
     xwayland-satellite.path = "${lib.getExe pkgs.xwayland-satellite-unstable}";
@@ -318,6 +319,10 @@ in
         ];
         open-on-output = lib.last config.machine.monitors;
         default-column-width.proportion = 0.5;
+      }
+      {
+        matches = [ { app-id = "zellij-neovim"; } ];
+        open-maximized-to-edges = true;
       }
       # steam notifications: https://niri-wm.github.io/niri/Application-Issues.html#steam
       {
