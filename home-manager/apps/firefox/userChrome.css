@@ -200,6 +200,21 @@
   --toolbar-bgcolor: var(--sag-bg-500) !important;
   --lwt-selected-tab-background-color: var(--sag-bg-800) !important;
 
+  --color-gray-50: var(--sag-bg-900) !important;
+  --color-gray-55: var(--sag-bg-800) !important;
+  --color-gray-60: var(--sag-bg-700) !important;
+  --color-gray-65: var(--sag-bg-600) !important;
+  --color-gray-70: var(--sag-bg-500) !important;
+  --color-gray-75: var(--sag-bg-400) !important;
+  --color-gray-80: var(--sag-bg-300) !important;
+  --color-gray-85: var(--sag-bg-200) !important;
+  --color-gray-90: var(--sag-bg-100) !important;
+
+  --color-accent-primary: var(--sag-accent-primary) !important;
+  --color-accent-primary-hover: var(--sag-accent-secondary) !important;
+  --color-accent-primary-active: var(--sag-accent-secondary) !important;
+  --color-accent-primary-selected: var(--sag-accent-secondary) !important;
+
   /* Horrifying border radius on browser tabs */
   --chrome-content-separator-color: unset !important;
   --chrome-window-gap: 0px !important;
