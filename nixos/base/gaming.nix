@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   # controller support
   hardware.xone.enable = true;
@@ -7,7 +7,10 @@
   programs.steam = {
     enable = true;
     extraPackages = with pkgs; [ mangohud ];
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+      inputs.proton-cachyos.packages.${pkgs.system}.default
+    ];
     localNetworkGameTransfers.openFirewall = true;
     protontricks.enable = true;
   };
