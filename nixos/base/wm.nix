@@ -11,6 +11,8 @@
 
   services.libinput.touchpad.naturalScrolling = true;
 
+  services.speechd.enable = false; # uses 700MiB of memory
+
   environment.variables = {
     XDG_BACKEND = "wayland";
     XDG_SESSION_TYPE = "wayland";
@@ -31,10 +33,15 @@
   services.displayManager.defaultSession = "niri";
 
   # login screen with auto login
-  services.displayManager = {
-    autoLogin.user = "saghen";
-    gdm.enable = true;
+  services.displayManager.autoLogin.user = "saghen";
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "niri-session";
+      user = "saghen";
+    };
   };
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   xdg.portal = {
     enable = true;

@@ -22,19 +22,28 @@
       feh # Image viewer
       qimgv # Image viewer
       nomacs # Image viewer
-      prismlauncher # Minecraft launcher
+      (prismlauncher.override { jdks = [ pkgs.jdk21 ]; }) # Minecraft launcher
       jellyfin-media-player # Media player
       ente-desktop # Photos
     ];
 
-    programs.obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        obs-pipewire-audio-capture
-        obs-vaapi
-        obs-vkcapture
-      ];
-    };
+    # override the package to drop the 2GB CEF binary
+    programs.obs-studio =
+      let
+        obs = pkgs.obs-studio.override { browserSupport = false; };
+      in
+      {
+        enable = true;
+        package = obs;
+        plugins = map (p: p.override { obs-studio = obs; }) (
+          with pkgs.obs-studio-plugins;
+          [
+            obs-pipewire-audio-capture
+            obs-vaapi
+            obs-vkcapture
+          ]
+        );
+      };
 
     # google drive lite
     services.syncthing.enable = true;

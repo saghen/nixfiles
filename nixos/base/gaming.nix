@@ -7,10 +7,7 @@
   programs.steam = {
     enable = true;
     extraPackages = with pkgs; [ mangohud ];
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-      inputs.proton-cachyos.packages.${pkgs.system}.default
-    ];
+    extraCompatPackages = [ inputs.proton-cachyos.packages.${pkgs.system}.default ];
     localNetworkGameTransfers.openFirewall = true;
     protontricks.enable = true;
   };
