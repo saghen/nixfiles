@@ -116,20 +116,22 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/.ssh/id_github";
-          identitiesOnly = true;
+          HostName = "github.com";
+          User = "git";
+          IdentityFile = "~/.ssh/id_github";
+          IdentitiesOnly = true;
         };
         "hf.co" = {
-          hostname = "hf.co";
+          HostName = "hf.co";
           user = "git";
-          identityFile = "~/.ssh/id_github";
-          identitiesOnly = true;
+          IdentityFile = "~/.ssh/id_hf";
+          IdentitiesOnly = true;
         };
-        otoro.forwardAgent = true;
+        "otoro" = {
+          ForwardAgent = true;
+        };
       };
     };
 

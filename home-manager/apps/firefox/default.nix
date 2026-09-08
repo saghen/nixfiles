@@ -14,6 +14,7 @@
   programs.firefox = {
     enable = true;
     package = firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
+    configPath = "${config.home.homeDirectory}/.mozilla/firefox"; # TODO: migrate to "$XDG_CONFIG_HOME/mozilla/firefox"
 
     profiles = {
       saghen = {
@@ -85,14 +86,10 @@
           default = "Kagi";
           order = [
             "Kagi"
-            "ddg"
             "NixOS Wiki"
             "Nix Packages"
             "Nix Options"
             "Home Manager"
-            "Arch Wiki"
-            "Arch Packages"
-            "AUR"
             "NPM"
           ];
           engines =

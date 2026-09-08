@@ -50,7 +50,7 @@
       ruff
       ty
       # web
-      typescript-go
+      typescript
       prettierd
     ];
 
