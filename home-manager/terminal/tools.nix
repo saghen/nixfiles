@@ -125,7 +125,7 @@
         };
         "hf.co" = {
           HostName = "hf.co";
-          user = "git";
+          User = "git";
           IdentityFile = "~/.ssh/id_hf";
           IdentitiesOnly = true;
         };
@@ -137,17 +137,13 @@
 
     gpg = {
       enable = true;
-      settings = {
-        pinentry-mode = "loopback";
-      };
+      settings.pinentry-mode = "loopback";
     };
 
     # cat with syntax highlighting
     bat = {
       enable = true;
-      config = {
-        theme = "base16";
-      };
+      config.theme = "base16";
     };
 
     git = {
