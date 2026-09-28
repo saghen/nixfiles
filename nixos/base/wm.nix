@@ -34,13 +34,7 @@
 
   # login screen with auto login
   services.displayManager.autoLogin.user = "saghen";
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "niri-session";
-      user = "saghen";
-    };
-  };
+  services.displayManager.ly.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
 
   xdg.portal = {
