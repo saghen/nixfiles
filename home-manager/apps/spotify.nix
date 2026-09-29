@@ -18,7 +18,15 @@ in
     enabledExtensions = with spicePkgs.extensions; [
       hidePodcasts
       bookmark
-      betterGenres
+      # https://code.vexcited.com/spicetify/genres
+      ({
+        src = pkgs.fetchzip {
+          url = "https://code.vexcited.com/spicetify/genres/releases/download/0.1.0/genres-0.1.0.zip";
+          hash = "sha256-80WFlkowiaG6+nUXVyE6ULYSlTT4jB93LjczPepcNqk=";
+          stripRoot = false;
+        };
+        name = "index.js";
+      })
     ];
   };
 }
