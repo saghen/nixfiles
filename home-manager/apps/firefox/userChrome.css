@@ -220,7 +220,9 @@
   --chrome-window-gap: 0px !important;
 
   --focus-outline-color: transparent !important;
-  --autocomplete-popup-highlight-background: var(--sag-accent-primary) !important;
+  --autocomplete-popup-highlight-background: var(
+    --sag-accent-primary
+  ) !important;
 
   --chrome-content-separator-color: transparent !important;
   --tab-line-color: transparent !important;
@@ -243,6 +245,7 @@
   margin: 0 !important;
   background: none !important;
   border: none !important;
+  overflow: unset !important;
   border-radius: 0 !important;
 }
 
@@ -509,8 +512,6 @@ sidebar-panel-header {
   margin: 0 !important;
 
   pointer-events: all;
-
-  transform: translate(-50%, -50%);
 }
 
 #searchbar {
@@ -523,6 +524,7 @@ sidebar-panel-header {
   border: none !important;
   border-radius: 8px 8px 0 0 !important;
   box-shadow: none !important;
+  clip-path: none !important;
 
   background-color: var(--sag-bg-700) !important;
   z-index: 1000;
@@ -536,16 +538,23 @@ sidebar-panel-header {
   background: var(--sag-bg-700);
 
   position: absolute !important;
-  left: 0;
-  right: 0;
-  top: calc(100% - var(--toolbarbutton-border-radius) * 2 + 50px);
-  padding-top: calc(var(--toolbarbutton-border-radius) * 2);
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  margin-top: -30px !important;
+  transform: translateX(-50%);
   border-radius: 0 0 8px 8px;
+  overflow-clip-margin: unset !important;
 
   /* Reset their values */
   width: unset !important;
   padding-block: 0 !important;
   margin-inline: 0 !important;
+  box-shadow: none !important;
+}
+
+.urlbarView-background {
+  background: var(--sag-bg-700) !important;
 }
 
 #urlbar > #urlbar-input-container {
