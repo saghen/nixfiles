@@ -6,24 +6,18 @@
   home.packages = with pkgs; [
     # tools
     wl-clipboard # many programs expect in path
-    lacy # better cd
     nh # nix helper
     procps # pkill watch top sysctl etc...
-    tldr # cheatsheets
     eza # better ls
     fd # better find
     sd # better sed
     jq # transform json
-    fx # interfactive view and transform json with actual js
     yq-go # jq for yaml
     fzf # fuzzy finder
     gh # github cli FIXME: stores credentials in plain text
     trash-cli # put items into the trash
     playerctl # interact with mpris players
     pulseaudio # utilities like pactl
-    twitch-cli # login to twitch, used by some scripts
-    xdo # send commands to X
-    nix-index # provides nix-locate
     ast-grep # structural code search
     tokei # count LoC
 
@@ -33,7 +27,6 @@
     llm-agents.pi
 
     # devops
-    terraform # FIXME: stores credentials in plain text
     kubectl
     kustomize
     kubectx # fast namespace and context switching
@@ -56,7 +49,6 @@
       "rustfmt"
       "miri"
     ])
-    cargo-wizard # subcommand for configuring projects for best performance
     rust-analyzer-nightly
     pkg-config
   ];
@@ -216,28 +208,5 @@
 
     # z for jumping between directories
     zoxide.enable = true;
-
-    # get dat metadata for music
-    beets = {
-      enable = false;
-      settings = {
-        plugins = [
-          "lyrics"
-          "replaygain"
-          "scrub"
-          "lastgenre"
-          "fetchart"
-          "duplicates"
-          "chroma"
-        ];
-        replaygain.backend = "gstreamer";
-        duplicates = {
-          checksum = "fpcalc -plain {file}";
-          # prefer files in full albums vs singles, but sometimes this doesn't work
-          # and you need to reconcile manually
-          tiebreak.items = [ "tracktotal" ];
-        };
-      };
-    };
   };
 }

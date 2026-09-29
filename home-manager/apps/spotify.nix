@@ -1,14 +1,14 @@
 # https://github.com/Gerg-L/spicetify-nix
 {
   pkgs,
-  spicetify-nix,
+  inputs,
   ...
 }:
 let
-  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  imports = [ spicetify-nix.homeManagerModules.default ];
+  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
   programs.spicetify = {
     enable = true;

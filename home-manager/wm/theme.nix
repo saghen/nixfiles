@@ -15,10 +15,7 @@ rec {
     package = pkgs.papirus-icon-theme;
   };
   # expected by many gtk apps
-  home.packages = with pkgs; [
-    adwaita-icon-theme
-    xsettingsd
-  ];
+  home.packages = with pkgs; [ adwaita-icon-theme ];
 
   # GTK Theme
   gtk.theme = {
@@ -60,7 +57,4 @@ rec {
       sort-directories-first = true;
     };
   };
-
-  # TODO: QT Theme
-  qt.style = { };
 }

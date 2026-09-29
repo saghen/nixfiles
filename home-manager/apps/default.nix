@@ -18,12 +18,10 @@
       gparted # Disk management
       pavucontrol # GUI Volume mixer and device settings
       tauon # Music player
-      mpv # Video player
       feh # Image viewer
       qimgv # Image viewer
       nomacs # Image viewer
       (prismlauncher.override { jdks = [ pkgs.jdk21 ]; }) # Minecraft launcher
-      jellyfin-media-player # Media player
     ];
 
     # override the package to drop the 2GB CEF binary

@@ -62,12 +62,7 @@
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;
-                extraSpecialArgs = {
-                  inputs = inputs;
-                  inherit (inputs) spicetify-nix;
-                  inherit (inputs) fenix;
-                  inherit (inputs) firefox-nightly;
-                };
+                extraSpecialArgs = { inherit inputs; };
                 sharedModules = [
                   sops-nix.homeManagerModules.sops
                   ./machines/${hostname}/machine.nix

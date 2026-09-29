@@ -1,19 +1,19 @@
 {
   config,
   pkgs,
-  firefox-nightly,
+  inputs,
   ...
 }:
 {
   home = {
     sessionVariables = {
-      BROWSER = "firefox-developer-edition";
+      BROWSER = "firefox-nightly";
     };
   };
 
   programs.firefox = {
     enable = true;
-    package = firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
+    package = inputs.firefox-nightly.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
     configPath = "${config.home.homeDirectory}/.mozilla/firefox"; # TODO: migrate to "$XDG_CONFIG_HOME/mozilla/firefox"
 
     profiles = {
@@ -32,7 +32,6 @@
           "browser.toolbars.bookmarks.visibility" = "never";
           "browser.contentblocking.category" = "strict";
           "browser.newtabpage.activity-stream.feeds.section.highlights" = true;
-          "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "full-screen-api.warning.timeout" = -1; # Disable fullscreen warning
@@ -59,7 +58,6 @@
           "devtools.toolbox.host" = "right";
 
           "layout.frame_rate" = config.machine.refreshRate;
-          # "gfx.wayland.hdr" = config.machine.hdr;
 
           "privacy.annotate_channels.strict_list.enabled" = true;
           "privacy.donottrackheader.enabled" = true;
@@ -67,18 +65,12 @@
           "privacy.globalprivacycontrol.enabled" = true;
           "privacy.query_stripping.enabled" = true;
           "privacy.query_stripping.enabled.pbmode" = true;
-          "privacy.trackingprotection.enabled" = true;
-          "privacy.trackingprotection.emailtracking.enabled" = true;
-          "privacy.trackingprotection.socialtracking.enabled" = true;
           "privacy.userContext.enabled" = true;
           "privacy.userContext.ui.enabled" = true;
           # https://news.ycombinator.com/item?id=40952330
           "dom.private-attribution.submission.enabled" = false;
 
-          "services.sync.prefs.sync-seen.browser.newtabpage.pinned" = true;
-          "network.dns.disablePrefetch" = false;
           "network.predictor.enabled" = true;
-          "network.prefetch-next" = true;
         };
 
         search = {

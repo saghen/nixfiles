@@ -17,9 +17,6 @@
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Defaults to powersave without this
-  powerManagement.cpuFreqGovernor = "performance";
-
   nix.settings = {
     # Enable flakes and new 'nix' command
     experimental-features = [

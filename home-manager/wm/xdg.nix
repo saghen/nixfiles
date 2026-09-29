@@ -41,12 +41,8 @@
         nvim = "nvim.desktop";
         files = "org.gnome.Nautilus.desktop";
         mpv = "mpv.desktop";
-        vlc = "vlc.desktop";
 
-        player = [
-          mpv
-          vlc
-        ];
+        player = [ mpv ];
         imageViewer = [
           qimgv
           nomacs
@@ -108,7 +104,7 @@
           "x-scheme-handler/unknown" = [ firefox ];
           "x-scheme-handler/webcal" = [ firefox ];
 
-          "audio/*" = [ vlc ];
+          "audio/*" = [ mpv ];
           "video/*" = [ mpv ];
           "image/*" = [ qimgv ];
           "inode/directory" = [ files ];

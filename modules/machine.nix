@@ -86,27 +86,10 @@ in
       description = "Variable refresh rate of the monitors";
     };
 
-    hdr = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-
     optimizePower = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "Optimize power usage";
-    };
-
-    nvidia = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable NVIDIA GPU support";
-    };
-
-    microphoneHack = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable microphone hack which forces the volume to 100%";
     };
 
     backup = lib.mkOption {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 let
   mpvConfig = {
     profile = "high-quality";
@@ -14,11 +14,6 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
-    mpv
-    vlc
-  ];
-
   programs.mpv = {
     enable = true;
     config = mpvConfig;

@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ./misc.nix
     ./niri.nix
     ./noctalia.nix
     ./theme.nix

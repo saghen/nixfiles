@@ -9,19 +9,13 @@
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   niri-flake.cache.enable = false;
 
-  services.libinput.touchpad.naturalScrolling = true;
-
   services.speechd.enable = false; # uses 700MiB of memory
 
   environment.variables = {
-    XDG_BACKEND = "wayland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "niri";
     QT_QPA_PLATFORM = "wayland";
     NIXOS_OZONE_WL = "1"; # enable wayland in all apps
 
     # scaling
-    GDK_SCALE = toString config.machine.scalingFactor;
     QT_SCALE_FACTOR = toString config.machine.scalingFactor;
   };
 
@@ -35,7 +29,7 @@
   # login screen with auto login
   services.displayManager.autoLogin.user = "saghen";
   services.displayManager.ly.enable = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.ly.enableGnomeKeyring = true;
 
   xdg.portal = {
     enable = true;

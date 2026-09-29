@@ -124,7 +124,6 @@
       enable = true;
       enableTransience = true;
       settings = {
-        # instead of this, we defined a function --on-event fish-prompt that runs echo
         add_newline = true;
 
         format = "$username$hostname$directory$cmd_duration$nix_shell$python$line_break$character";

@@ -1,12 +1,10 @@
 { inputs, ... }:
 {
   # hardware-specific modules
-  # TODO: use framework specific module
   imports = [ inputs.hardware.nixosModules.framework-amd-ai-300-series ];
 
   config = {
     networking.hostName = "liam-laptop";
-    networking.hostId = "968d12a1";
 
     # offload builds to the desktop over tailscale, with auth via tailscale ssh
     nix.distributedBuilds = true;

@@ -59,9 +59,6 @@ rec {
       "/home/*/.local"
       "/home/*/downloads"
 
-      "/home/*/beets"
-      "/home/*/Music"
-
       "/home/*/games/lutris"
       "/home/*/games/steam"
       "/home/*/games/mod-organizer-2"

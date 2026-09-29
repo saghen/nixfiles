@@ -13,7 +13,6 @@
 
   config = {
     networking.hostName = "liam-desktop";
-    networking.hostId = "968d12a1";
 
     # serve the nix store to the laptop as a binary cache
     sops.secrets.harmonia.sopsFile = ../../keys/sops/harmonia.yaml;
