@@ -66,7 +66,7 @@ in
 
     prefer-no-csd = true; # prefer no client side decorations
     screenshot-path = "${config.xdg.userDirs.pictures}/screenshots/%Y/%Y-%m-%d_%H-%M-%S.png";
-    animations.slowdown = 0.8;
+    animations.slowdown = 0.7;
     animations.screenshot-ui-open.enable = false;
     overview.backdrop-color = colors.crust;
 
