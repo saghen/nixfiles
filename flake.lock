@@ -341,6 +341,26 @@
         "type": "github"
       }
     },
+    "minnow": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790959221,
+        "narHash": "sha256-8hyP+e1q79/dTgBJyVN5gAIYOiZ2vVBCRZJS1G1tVLw=",
+        "ref": "refs/heads/main",
+        "rev": "8d4e331b5887fde28e5e88f0890d46b2919a6b65",
+        "revCount": 9,
+        "type": "git",
+        "url": "file:///home/saghen/code/superfishial/minnow"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/saghen/code/superfishial/minnow"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -622,26 +642,6 @@
         "type": "github"
       }
     },
-    "re-encoder": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790958379,
-        "narHash": "sha256-fEnCREBvmhKO4d/btpnjWPdCMAKDmeJh63tJuGKWBvk=",
-        "ref": "refs/heads/main",
-        "rev": "500d875c24b8a75e7f971c4448cbf264958ce2af",
-        "revCount": 8,
-        "type": "git",
-        "url": "file:///home/saghen/code/superfishial/re-encoder"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/saghen/code/superfishial/re-encoder"
-      }
-    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -649,13 +649,13 @@
         "hardware": "hardware",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
+        "minnow": "minnow",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "niri": "niri",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
         "proton-cachyos": "proton-cachyos",
-        "re-encoder": "re-encoder",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix"
       }

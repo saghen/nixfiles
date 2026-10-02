@@ -34,8 +34,8 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     llm-agents.inputs.nixpkgs.follows = "nixpkgs";
 
-    re-encoder.url = "git+file:///home/saghen/code/superfishial/re-encoder";
-    re-encoder.inputs.nixpkgs.follows = "nixpkgs";
+    minnow.url = "git+file:///home/saghen/code/superfishial/minnow";
+    minnow.inputs.nixpkgs.follows = "nixpkgs";
 
     proton-cachyos.url = "github:Daaboulex/proton-cachyos-nix";
     proton-cachyos.inputs.nixpkgs.follows = "nixpkgs";

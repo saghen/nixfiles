@@ -106,7 +106,7 @@ in
       description = "Backup configuration";
     };
 
-    reEncoder = lib.mkOption {
+    minnow = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "Re-encode super fish REMUX torrents to AV1 on this machine";
