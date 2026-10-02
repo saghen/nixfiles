@@ -11,7 +11,7 @@
     nix.buildMachines = [
       {
         hostName = "liam-desktop";
-        sshUser = "saghen";
+        sshUser = "nix-builder";
         protocol = "ssh-ng";
         system = "x86_64-linux";
         maxJobs = 8;

@@ -11,7 +11,11 @@
   ];
 
   config = {
-    virtualisation.docker.enable = true;
+    # rootless, since membership in the docker group is equivalent to root
+    virtualisation.docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
 
     # allow executables bundled for generic linux distros to run
     programs.nix-ld.enable = true;

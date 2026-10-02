@@ -71,6 +71,8 @@
       NPM_CONFIG_PREFIX = "${data}/npm";
       NPM_CONFIG_CACHE = "${cache}/npm";
       NPM_CONFIG_TMP = "${runtime}/npm";
+      NPM_CONFIG_IGNORE_SCRIPTS = "true";
+      NPM_CONFIG_MIN_RELEASE_AGE = "3"; # days
       CARGO_HOME = "${cfg}/cargo";
       RUSTUP_HOME = "${data}/rust";
       GOPATH = "${data}/go";
@@ -83,6 +85,13 @@
       HISTFILE = "${state}/bash/history";
     };
   xdg.configFile = {
+    bunfig = {
+      target = ".bunfig.toml";
+      text = ''
+        [install]
+        minimumReleaseAge = 259200 # 3 days
+      '';
+    };
     cargo = {
       target = "cargo/config.toml";
       text = ''

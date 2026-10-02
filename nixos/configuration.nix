@@ -44,10 +44,8 @@
     extra-trusted-public-keys = [
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
-    trusted-users = [
-      "root"
-      "saghen"
-    ];
+    # don't add current user to this, equivalent to root
+    trusted-users = [ "root" ];
   };
 
   nixpkgs = {
@@ -62,7 +60,6 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "docker"
       "networkmanager"
     ];
   };

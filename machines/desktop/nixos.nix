@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  pkgs,
   ...
 }:
 {
@@ -23,5 +24,15 @@
       settings.priority = 30;
     };
     networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5000 ];
+
+    # remote builder for the laptop, reached via tailscale ssh
+    # must be trusted to accept unsigned build inputs, so it's root-equivalent: only the laptop may log in
+    users.users.nix-builder = {
+      isSystemUser = true;
+      group = "nix-builder";
+      shell = pkgs.bash;
+    };
+    users.groups.nix-builder = { };
+    nix.settings.trusted-users = [ "nix-builder" ];
   };
 }

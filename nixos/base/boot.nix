@@ -41,6 +41,8 @@
         efi.canTouchEfiVariables = true;
         timeout = 5;
         systemd-boot.enable = true;
+        # prevents editing the kernel cmdline at boot (i.e. init=/bin/sh)
+        systemd-boot.editor = false;
       };
 
       # Loading animation and LUKS password prompt
