@@ -50,23 +50,23 @@
       widget.cpu = {
         type = "sysmon";
         stat = "cpu_usage";
-        show_label = false;
+        show_value = false;
       };
       widget.temp = {
         type = "sysmon";
         stat = "cpu_temp";
-        show_label = false;
+        show_value = false;
       };
       widget.ram = {
         type = "sysmon";
         stat = "ram_used";
-        show_label = false;
+        show_value = false;
       };
       widget.disk = {
         type = "sysmon";
         stat = "disk_pct";
         path = "/";
-        show_label = false;
+        show_value = false;
       };
 
       bar.main = {
