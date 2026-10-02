@@ -622,6 +622,26 @@
         "type": "github"
       }
     },
+    "re-encoder": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790920762,
+        "narHash": "sha256-Rsne44eC3yVruoVOOcrOZB2Ip1F4dr7Nax0pahlpH1Q=",
+        "ref": "refs/heads/main",
+        "rev": "232dd47419ddf915521f45fe40699ec90142e6c9",
+        "revCount": 5,
+        "type": "git",
+        "url": "file:///home/saghen/code/superfishial/re-encoder"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/saghen/code/superfishial/re-encoder"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -635,6 +655,7 @@
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
         "proton-cachyos": "proton-cachyos",
+        "re-encoder": "re-encoder",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix"
       }

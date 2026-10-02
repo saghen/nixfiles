@@ -12,6 +12,7 @@
       refreshRate = 240;
 
       backup.toSuperFish = true;
+      reEncoder = true;
 
       disks = {
         boot = {
