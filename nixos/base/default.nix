@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   imports = [
     ./backups.nix
@@ -16,6 +16,8 @@
       enable = true;
       setSocketVariable = true;
     };
+    # start manually via `systemctl --user start docker`
+    systemd.user.services.docker.wantedBy = lib.mkIf config.machine.optimizePower (lib.mkForce [ ]);
 
     # allow executables bundled for generic linux distros to run
     programs.nix-ld.enable = true;

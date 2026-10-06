@@ -1,7 +1,8 @@
-{ lib, ... }:
+{ config, lib, ... }:
 {
   # Bluetooth
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = !config.machine.optimizePower;
 
   # Internet
   networking.useNetworkd = true;

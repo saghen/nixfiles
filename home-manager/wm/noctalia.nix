@@ -21,6 +21,13 @@
         launcher.categories = false;
       };
 
+      # improves idle power draw due to fewer screen updates
+      system.monitor = lib.mkIf config.machine.optimizePower {
+        cpu_poll_seconds = 10.0;
+        memory_poll_seconds = 10.0;
+        disk_poll_seconds = 60.0;
+      };
+
       theme.builtin = "Catppuccin";
       location.address = "Toronto, ON";
       nightlight.enabled = true;

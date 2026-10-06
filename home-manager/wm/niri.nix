@@ -113,6 +113,8 @@ in
 
     spawn-at-startup = [
       { argv = [ "noctalia" ]; }
+    ]
+    ++ lib.optionals (!cfg.optimizePower) [
       { argv = [ "firefox-nightly" ]; }
       { argv = [ "equibop" ]; }
       { argv = [ "spotify" ]; }

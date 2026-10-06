@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
@@ -44,6 +45,9 @@
 
     # google drive lite
     services.syncthing.enable = true;
+    systemd.user.services.syncthing.Unit = lib.mkIf config.machine.optimizePower {
+      ConditionACPower = true;
+    };
 
     xdg.configFile.qimgv-theme =
       let

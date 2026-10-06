@@ -185,7 +185,7 @@
         };
         commit.verbose = true;
         core = {
-          fsmonitor = true;
+          fsmonitor = !config.machine.optimizePower;
           untrackedCache = true;
         };
 

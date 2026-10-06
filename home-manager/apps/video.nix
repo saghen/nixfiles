@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 let
   mpvConfig = {
     profile = "high-quality";
@@ -22,4 +22,5 @@ in
     enable = true;
     mpvConfig = mpvConfig;
   };
+  systemd.user.services.jellyfin-mpv-shim.Install.WantedBy = lib.mkForce [ ];
 }

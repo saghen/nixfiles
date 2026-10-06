@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   inputs,
   ...
@@ -38,8 +39,7 @@
 
           "middlemouse.paste" = false;
 
-          # crashes for now
-          "media.hardware-video-decoding.enabled" = false;
+          "media.hardware-video-decoding.enabled" = true;
 
           # fractional scaling
           "layout.css.devPixelsPerPx" = config.machine.scalingFactor;
@@ -59,7 +59,8 @@
           "devtools.debugger.remote-enabled" = false;
           "devtools.toolbox.host" = "right";
 
-          "layout.frame_rate" = config.machine.refreshRate;
+          # an explicit rate swaps compositor vsync for a software timer, so use the default when saving power
+          "layout.frame_rate" = if config.machine.optimizePower then -1 else config.machine.refreshRate;
 
           "privacy.annotate_channels.strict_list.enabled" = true;
           "privacy.donottrackheader.enabled" = true;
@@ -73,6 +74,13 @@
           "dom.private-attribution.submission.enabled" = false;
 
           "network.predictor.enabled" = true;
+
+          "datareporting.healthreport.uploadEnabled" = false;
+          "datareporting.policy.dataSubmissionEnabled" = false;
+        }
+        // lib.optionalAttrs config.machine.optimizePower {
+          "places.semanticHistory.featureGate" = false;
+          "browser.ml.enable" = false;
         };
 
         search = {
