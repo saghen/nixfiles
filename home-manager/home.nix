@@ -6,7 +6,6 @@
     ./terminal
     ./wm
     ./super-fish-monitor.nix
-    ./minnow.nix
     ../modules/machine.nix
   ];
   config = {

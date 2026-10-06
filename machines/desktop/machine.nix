@@ -12,7 +12,6 @@
       refreshRate = 240;
 
       backup.toSuperFish = true;
-      minnow = true;
 
       disks = {
         boot = {
