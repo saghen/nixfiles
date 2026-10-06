@@ -121,7 +121,7 @@
       };
 
       wallpaper = {
-        directory = "${config.xdg.userDirs.pictures}/wallpapers/2026";
+        directory = "${config.xdg.userDirs.pictures}/wallpapers/current";
         automation.enabled = true;
         automation.interval_seconds = 60 * 60; # rotate every hour
       };
