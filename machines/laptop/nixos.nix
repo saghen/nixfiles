@@ -6,11 +6,11 @@
   config = {
     networking.hostName = "liam-laptop";
 
-    # offload builds to the desktop over tailscale, with auth via tailscale ssh
+    # offload builds to the desktop over tailscale
     nix.distributedBuilds = true;
     nix.buildMachines = [
       {
-        hostName = "liam-desktop";
+        hostName = "desktop";
         sshUser = "nix-builder";
         protocol = "ssh-ng";
         system = "x86_64-linux";
@@ -20,14 +20,16 @@
           "kvm"
           "nixos-test"
         ];
+        # the nix daemon connects as root, which has no known_hosts entry.
+        # base64 of the desktop's tailscale ssh ed25519 host key
+        publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUgzZjBnRWF1c3RqZjFlUmpHL3ROT01yd2dhT0tuWU1JN3k3RkFTWVMvSUg=";
       }
     ];
     nix.settings = {
-      # the desktop fetches dependencies from public caches itself
-      # instead of routing them through the laptop
+      # fetch from caches on desktop
       builders-use-substitutes = true;
       # pull already-built paths from the desktop's store (harmonia)
-      extra-substituters = [ "http://liam-desktop:5000" ];
+      extra-substituters = [ "http://desktop:5000" ];
       extra-trusted-public-keys = [ "liam-desktop-1:hJbtnobnyrG3TE5oIYHzAOG1co9z6brCMP/6H0C2YO4=" ];
       connect-timeout = 3; # giveup quickly on unreachable
     };
