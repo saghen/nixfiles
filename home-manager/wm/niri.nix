@@ -69,8 +69,10 @@ in
     animations.slowdown = 0.7;
     animations.screenshot-ui-open.enable = false;
     overview.backdrop-color = colors.crust;
+    hotkey-overlay.skip-at-startup = true;
 
     layout = {
+      background-color = "#000000";
       gaps = 10 * cfg.scalingFactor;
       always-center-single-column = true;
       shadow.enable = false;

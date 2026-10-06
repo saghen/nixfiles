@@ -26,10 +26,22 @@
   };
   services.displayManager.defaultSession = "niri";
 
-  # login screen with auto login
-  services.displayManager.autoLogin.user = "saghen";
-  services.displayManager.ly.enable = true;
-  security.pam.services.ly.enableGnomeKeyring = true;
+  # auto login
+  services.greetd = {
+    enable = true;
+    settings = {
+      # login shell so /etc/profile sets environment.variables
+      initial_session = {
+        user = "saghen";
+        command = "${pkgs.bash}/bin/bash -l -c 'exec niri-session'";
+      };
+      # poweroff on logout
+      default_session = {
+        user = "root";
+        command = "${config.systemd.package}/bin/systemctl poweroff";
+      };
+    };
+  };
 
   xdg.portal = {
     enable = true;

@@ -141,12 +141,6 @@
       settings.pinentry-mode = "loopback";
     };
 
-    # cat with syntax highlighting
-    bat = {
-      enable = true;
-      config.theme = "base16";
-    };
-
     git = {
       enable = true;
       lfs.enable = true;

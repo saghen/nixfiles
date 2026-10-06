@@ -79,6 +79,9 @@
       HandleSuspendKey = "suspend-then-hibernate";
     };
 
+    # faster boot, no black flash during plymouth luks password prompt
+    hardware.amdgpu.initrd.enable = false;
+
     # enable fingerprint reader
     # register fingers via: sudo fprintd-enroll saghen -f finger
     services.fprintd.enable = true;
