@@ -39,19 +39,22 @@ let
   '';
 
   # tiny layer-shell client which covers an output with true black, so the OLED appears off
-  blackout = pkgs.runCommandCC "blackout" {
-    nativeBuildInputs = [ pkgs.wayland-scanner ];
-    buildInputs = [ pkgs.wayland ];
-  } ''
-    for xml in ${pkgs.wlr-protocols}/share/wlr-protocols/unstable/wlr-layer-shell-unstable-v1.xml \
-      ${pkgs.wayland-protocols}/share/wayland-protocols/stable/{viewporter/viewporter,xdg-shell/xdg-shell}.xml; do
-      name=$(basename $xml .xml)
-      wayland-scanner client-header $xml $name-client-protocol.h
-      wayland-scanner private-code $xml $name.c
-    done
-    mkdir -p $out/bin
-    $CC -std=gnu17 -O2 -I. ${./blackout.c} *.c -lwayland-client -o $out/bin/blackout
-  '';
+  blackout =
+    pkgs.runCommandCC "blackout"
+      {
+        nativeBuildInputs = [ pkgs.wayland-scanner ];
+        buildInputs = [ pkgs.wayland ];
+      }
+      ''
+        for xml in ${pkgs.wlr-protocols}/share/wlr-protocols/unstable/wlr-layer-shell-unstable-v1.xml \
+          ${pkgs.wayland-protocols}/share/wayland-protocols/stable/{viewporter/viewporter,xdg-shell/xdg-shell}.xml; do
+          name=$(basename $xml .xml)
+          wayland-scanner client-header $xml $name-client-protocol.h
+          wayland-scanner private-code $xml $name.c
+        done
+        mkdir -p $out/bin
+        $CC -std=gnu17 -O2 -I. ${./blackout.c} *.c -lwayland-client -o $out/bin/blackout
+      '';
 in
 {
   home.packages = [
@@ -282,7 +285,8 @@ in
       # Powers off the monitors. To turn them back on, do any input like
       # moving the mouse or pressing any other key.
       "Mod+Shift+P".action.power-off-monitors = { };
-      "Mod+T".action.spawn-sh = "pkill -x blackout || exec ${blackout}/bin/blackout ${lib.last cfg.monitors}";
+      "Mod+T".action.spawn-sh =
+        "pkill -x blackout || exec ${blackout}/bin/blackout ${lib.last cfg.monitors}";
     };
 
     debug.honor-xdg-activation-with-invalid-serial = true;
