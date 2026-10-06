@@ -30,6 +30,7 @@
   boot.initrd.luks.devices."luks-${config.machine.disks.root.luksUuid}" = {
     device = "/dev/disk/by-uuid/${config.machine.disks.root.luksUuid}";
     allowDiscards = config.machine.disks.root.trim;
+    bypassWorkqueues = true;
   };
 
   fileSystems."/" = {
@@ -45,6 +46,7 @@
   boot.initrd.luks.devices."luks-${config.machine.disks.swap.luksUuid}" = {
     device = "/dev/disk/by-uuid/${config.machine.disks.swap.luksUuid}";
     allowDiscards = config.machine.disks.swap.trim;
+    bypassWorkqueues = true;
   };
   swapDevices = [ { device = "/dev/disk/by-uuid/${config.machine.disks.swap.diskUuid}"; } ];
 
