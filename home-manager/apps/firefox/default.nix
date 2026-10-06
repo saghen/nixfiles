@@ -54,7 +54,9 @@
           "cookiebanners.service.mode.privateBrowsing" = 1;
 
           "devtools.chrome.enabled" = true;
-          "devtools.debugger.remote-enabled" = true;
+          # required for the browser toolbox, but allows taking over the browser via --start-debugger-server
+          # kept here for easy toggling
+          "devtools.debugger.remote-enabled" = false;
           "devtools.toolbox.host" = "right";
 
           "layout.frame_rate" = config.machine.refreshRate;
