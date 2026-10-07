@@ -106,7 +106,7 @@ in
         inherit name;
         value = {
           scale = 1.0;
-          variable-refresh-rate = cfg.variableRefreshRate;
+          variable-refresh-rate = if cfg.variableRefreshRate then "on-demand" else false;
           mode = {
             width = cfg.width;
             height = cfg.height;
@@ -306,6 +306,13 @@ in
         ];
         open-on-output = lib.last config.machine.monitors;
         default-column-width.proportion = 0.5;
+      }
+      {
+        matches = [
+          { app-id = "^steam_app_"; } # proton games, via xwayland-satellite
+          { app-id = "^gamescope$"; }
+        ];
+        variable-refresh-rate = true;
       }
       {
         matches = [ { app-id = "neovim"; } ];
