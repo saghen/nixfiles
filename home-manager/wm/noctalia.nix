@@ -21,13 +21,6 @@
         launcher.categories = false;
       };
 
-      # improves idle power draw due to fewer screen updates
-      system.monitor = lib.mkIf config.machine.optimizePower {
-        cpu_poll_seconds = 10.0;
-        memory_poll_seconds = 10.0;
-        disk_poll_seconds = 60.0;
-      };
-
       theme.builtin = "Catppuccin";
       location.address = "Toronto, ON";
       nightlight.enabled = true;
@@ -80,6 +73,12 @@
         cpu_temp_critical_threshold = 85;
         disk_used_pct_activity_threshold = 90;
         disk_used_pct_critical_threshold = 95;
+      }
+      # improves idle power draw due to fewer screen updates
+      // lib.mkIf config.machine.optimizePower {
+        cpu_poll_seconds = 10.0;
+        memory_poll_seconds = 10.0;
+        disk_poll_seconds = 60.0;
       };
 
       bar.main = {
