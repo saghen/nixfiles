@@ -71,9 +71,15 @@
       };
       widget.disk = {
         type = "sysmon";
-        stat = "disk_pct";
+        stat = "disk_used_pct";
         path = "/";
         show_value = false;
+      };
+      system.monitor = {
+        cpu_temp_activity_threshold = 80;
+        cpu_temp_critical_threshold = 85;
+        disk_used_pct_activity_threshold = 90;
+        disk_used_pct_critical_threshold = 95;
       };
 
       bar.main = {
