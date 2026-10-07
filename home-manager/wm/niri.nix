@@ -19,18 +19,22 @@ let
     ]
     ++ (pkgs.lib.splitString " " cmd);
 
-  launchNeovimZellij = pkgs.writeShellScriptBin "nvim-zellij" ''
-    if ID=$(niri msg -j windows | jq -e 'map(select(.app_id == "zellij-neovim")) | .[0].id'); then
-      niri msg action focus-window --id $ID
-    else
-      footclient \
-        -o colors.foreground=${builtins.substring 1 6 colors.subtext-1} \
-        -o pad=0x0 \
-        --window-size-pixels=3840x2160 \
-        --app-id zellij-neovim \
-        --title zellij-neovim \
-        fish -c "zellij --session neovim --new-session-with-layout neovim || zellij attach neovim"
+  launchNeovim = pkgs.writeShellScriptBin "nvim-launch" ''
+    if ID=$(niri msg -j windows | jq -e 'map(select(.app_id == "neovim")) | .[0].id'); then
+      niri msg action focus-window --id "$ID"
+      exit
     fi
+
+    mkdir -p "$XDG_RUNTIME_DIR/tuque"
+    sock="$XDG_RUNTIME_DIR/tuque/''${HOME//\//%}.sock"
+    args=(--listen "$sock" "+silent detach!")
+    [ -S "$sock" ] && args=(--server "$sock" --remote-ui)
+
+    exec foot \
+      -o colors.foreground=${builtins.substring 1 6 colors.subtext-1} \
+      -o pad=0x0 \
+      --app-id neovim \
+      nvim "''${args[@]}"
   '';
 
   screenshotRegion = pkgs.writeShellScriptBin "screenshot-region" ''
@@ -59,7 +63,7 @@ in
 {
   home.packages = [
     screenshotRegion
-    launchNeovimZellij
+    launchNeovim
   ];
 
   programs.niri.package = pkgs.niri-unstable;
@@ -133,7 +137,7 @@ in
       "Mod+D".action.spawn = noctalia "panel-toggle launcher";
       "Mod+Return".action.spawn = "footclient";
       "Mod+Shift+Return".action.spawn = "foot"; # fallback in case foot.service fails
-      "Mod+C".action.spawn = "${lib.getExe launchNeovimZellij}";
+      "Mod+C".action.spawn = "${lib.getExe launchNeovim}";
       "Mod+A".action.move-window-to-monitor-next = { };
       "Mod+S".action.move-workspace-to-monitor-next = { };
       "Mod+M".action.maximize-window-to-edges = { };
@@ -304,7 +308,7 @@ in
         default-column-width.proportion = 0.5;
       }
       {
-        matches = [ { app-id = "zellij-neovim"; } ];
+        matches = [ { app-id = "neovim"; } ];
         open-maximized-to-edges = true;
       }
       # steam notifications: https://niri-wm.github.io/niri/Application-Issues.html#steam
