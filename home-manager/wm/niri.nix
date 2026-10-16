@@ -80,7 +80,7 @@ in
 
     layout = {
       background-color = "#000000";
-      gaps = 10 * cfg.scalingFactor;
+      gaps = 0 * cfg.scalingFactor;
       always-center-single-column = true;
       shadow.enable = false;
       border = {

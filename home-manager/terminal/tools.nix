@@ -22,6 +22,7 @@
     tokei # count LoC
 
     # agents
+    llm-agents.claude-agent-acp
     llm-agents.claude-code
     llm-agents.codex
     llm-agents.pi
@@ -49,6 +50,7 @@
       "rustfmt"
       "miri"
     ])
+    cargo-watch
     rust-analyzer-nightly
     pkg-config
   ];
@@ -178,10 +180,7 @@
           updateRefs = true;
         };
         commit.verbose = true;
-        core = {
-          fsmonitor = !config.machine.optimizePower;
-          untrackedCache = true;
-        };
+        core.untrackedCache = true;
 
         user = {
           email = "liamcdyer@gmail.com";

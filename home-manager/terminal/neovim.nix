@@ -10,6 +10,7 @@
 {
   home.sessionVariables.VISUAL = "nvim";
   home.sessionVariables.PAGER = "nvim +Man!";
+  home.sessionVariables.SYSTEMD_PAGER = ""; # disable pager
 
   sops.secrets.neovim = {
     sopsFile = ../../keys/sops/neovim.yaml;

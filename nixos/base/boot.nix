@@ -79,7 +79,7 @@
 
     loader = {
       efi.canTouchEfiVariables = true;
-      # hidden unless a key (i.e. space) is held while booting
+      # hidden unless a key (e.g. space) is held/spammed while booting
       timeout = 0;
       systemd-boot.enable = true;
     };
