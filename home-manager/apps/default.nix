@@ -8,7 +8,7 @@
   imports = [
     ./firefox
     ./thunderbird
-    ./spotify.nix
+    ./spotify
     ./video.nix
   ];
   config = {
